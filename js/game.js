@@ -4,7 +4,7 @@ var renderer, scene,
 
 var stats;
 var clock = new THREE.Clock();
-var cubes = [], var objects = [];
+var cubes = [], objects = [];
 
 // Field variables to set Scene Dimensions
 var canvasWidth = window.innerWidth;
