@@ -23,20 +23,25 @@ var ANIMATE_INCREMENT = 0.01;
 
 function setup()
 {
+	console.log("Reach Setup");
 	//Scene initialisation code:
 	init();
+	console.log("Passed Init");
 	// Add elements to DOM
 	addToDOM();
+	console.log("Passed DOM");
 	// Set up all 3D Objects in scene
 	createScene();
+	console.log("Passed Scene");
 	// Render/Drawing/Animate function
 	tick();
+	console.log("Passed Tick");
 }
 
 function init()
 {
-	var canvas = document.getElementById("cC"); // Cube Canvas
-	initGL(canvas);
+	//var canvas = document.getElementById("cC"); // Cube Canvas
+	//initGL(canvas);
 	//Renderer:
 	renderer = Detector.webgl? new THREE.WebGLRenderer({ antialias: true }): errorMessage();
 	renderer.gammaInput = true;
@@ -72,17 +77,22 @@ function addToDOM()
 	var container = document.getElementById("gameCanvas");
 	// Attach the render-supplied DOM element (the gameCanvas)
 	container.appendChild(renderer.domElement);
-	
+	console.log("Got Canvas");
 	// Debugger Stats
 	stats = new Stats();
 	stats.domElement.style.position = 'absolute';
 	stats.domElement.style.top = '0px';
 	stats.domElement.style.left = '0px'; 
 	container.appendChild(stats.domElement);
+	console.log("Got Stats");
 }
-
+var ticks = 0;
 function tick()
-{	
+{	ticks++;
+if (ticks < 10)
+{
+	console.log("Ticking!" + ticks);
+}
 	// Draw THREE.JS scene
 	renderer.render(scene, camera);
 	// Loop draw function call
@@ -94,26 +104,30 @@ function createScene()
 {
 	// Create the scene
 	scene = new THREE.Scene();
+	console.log("Scene!");
 	// Add Lights to scene
 	createLights();
+	console.log("Lights!");
 	// Add Camera to scene
 	scene.add(camera);
+	console.log("Camera!");
 	
 	// Create cubes
 	cubes = new createCubes();
-	
+	console.log("Cubes!");
 	// Start the renderer
 	renderer.setSize(canvasWidth, canvasHeight);
-	
+	console.log("Render!");
 	// Create Camera Pivot 
 	pivot = new THREE.Object3D();
 	scene.add(pivot); // Default adds to Origin
-	
+	console.log("Pivot!");
 	// Add Child Cubes to scene 
 	for (var i = 0, len = cubes.length; i < len; ++i)
 	{
 		scene.add(cubes[i]);
 	}
+	console.log("Populated Cubes!");
 }
 
 // Obtained from XanderWraik's Rubik Scrambler
