@@ -96,8 +96,8 @@ if (ticks < 10)
 	// Draw THREE.JS scene
 	renderer.render(scene, camera);
 	// Loop draw function call
-	window.rAF(tick); // requestAnimationFrame, window optional 
-    animate();
+	window.requestAnimationFrame(tick); // requestAnimationFrame, window optional 
+    //animate();
 }
 
 function createScene()
