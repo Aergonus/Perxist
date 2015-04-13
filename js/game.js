@@ -140,13 +140,13 @@ function createLights()
 	scene.add(ambientLight);
 	
 	lights = new THREE.Object3D();
-	var spotlight = new THREE.PointLight(0xFFFFFF, 0.99225);
+	var spotlight = new THREE.SpotLight(0xFFFFFF, 0.99225);
 	spotlight.position.set(50,50,50);
 	spotlight.angle = 60 * Math.PI / 180;
 	spotlight.exponent = 100;
 	spotlight.target.position.set(0,0,0);
 
-	var highlight = new THREE.PointLight(0xFFFFFF, 0.99225);
+	var highlight = new THREE.SpotLight(0xFFFFFF, 0.99225);
 	highlight.position.set(100,100,250);
 	highlight.angle = 60 * Math.PI / 180;
 	highlight.exponent = 100;
