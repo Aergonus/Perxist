@@ -56,6 +56,10 @@ function init()
 	// Args(FOV, Aspect Ratio, Near clipping plane, Far clipping plane)
 	camera.position.set(100, 100, 100); // Initial position gives a orthographic perspective
 										// Not setting inital camera position screws up shadow rendering
+	//CameraControls:
+	cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
+	
+	addEventListeners();
 }
 
 // Obtained from gpjt's WebGL-Lessons
