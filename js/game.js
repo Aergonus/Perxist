@@ -21,7 +21,7 @@ var VIEW_ANGLE = 50,
 var PI_2 = Math.PI / 2;
 var ANIMATE_INCREMENT = 0.01;
 
-function setup()
+window.onload = function setup()
 {
 	console.log("Reach Setup");
 	//Scene initialisation code:
