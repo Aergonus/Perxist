@@ -4,7 +4,7 @@ function addEventListeners()
     window.addEventListener("resize", onWindowResize, false);
 	
 	//Keyboard Event Listener
-	window.document.addEventListener("keydown", onDocumentKeyDown, false);
+	//window.document.addEventListener("keydown", onDocumentKeyDown, false);
 	
 	//scramble
 	//window.document.getElementById("setScramble").addEventListener("onclick", scrambleCube, false);
