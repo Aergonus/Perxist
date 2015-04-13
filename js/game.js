@@ -11,6 +11,8 @@ var canvasWidth = window.innerWidth;
 var canvasHeight = window.innerHeight;
 var aspectRatio = canvasWidth / canvasHeight;
 
+console.log("W" + canvasWidth + ", H" + canvasHeight);
+
 // Camera Attributes
 var VIEW_ANGLE = 50,
   ASPECT_RATIO = aspectRatio,
