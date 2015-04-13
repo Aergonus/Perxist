@@ -2,7 +2,7 @@
 
 		function createCubes()
 		{
-			var cubieGeometry = new THREE.BoxGeometry(100, 100, 100, 15, 15, 15);
+			var cubieGeometry = new THREE.BoxGeometry(10, 10, 10, 1, 1, 1);
 			var cubieMaterial = [];
 			cubieMaterial = setCubieMaterial();
 			
@@ -18,38 +18,26 @@
 		
 		function positionCubies()
 		{
-			//Front face
-			cubies[0].position.set(0,110,110);
-			cubies[1].position.set(-110,110,110);
-			cubies[2].position.set(-110,0,110);
-			cubies[3].position.set(-110,-110,110);
-			cubies[4].position.set(0,-110, 110);
-			cubies[5].position.set(110,-110,110);
-			cubies[6].position.set(110,0,110);
-			cubies[7].position.set(110,110,110);
-			cubies[8].position.set(0,0,110);
-			
-			//Middle Face
-			cubies[9].position.set(0,110,0);
-			cubies[10].position.set(-110,110,0);
-			cubies[11].position.set(-110,0,0);
-			cubies[12].position.set(-110,-110,0);
-			cubies[13].position.set(0,-110, 0);
-			cubies[14].position.set(110,-110,0);
-			cubies[15].position.set(110,0,0);
-			cubies[16].position.set(110,110,0);
-			cubies[17].position.set(0,0,0);
-			
-			//Back Face
-			cubies[18].position.set(0,110,-110);
-			cubies[19].position.set(-110,110,-110);
-			cubies[20].position.set(-110,0,-110);
-			cubies[21].position.set(-110,-110,-110);
-			cubies[22].position.set(0,-110, -110);
-			cubies[23].position.set(110,-110,-110);
-			cubies[24].position.set(110,0,-110);
-			cubies[25].position.set(110,110,-110);
-			cubies[26].position.set(0,0,-110);
+	for (var i = 0, j = 1; i < 27; ++i) // For in loops, len = whatever.length, i < len
+	{
+		j++; //j = i + 1;
+		cubes[i].position.set(((j%3)-1)*11, (((j%9)/3)-1)*11, ((j%9)-1)*11);
+		//cubes[i].position.set(-coff +  (++i)%, y, z); use for matrix
+	}
+	
+	for (var i = 0, index = 0; i < 3; ++i, index++)
+	{
+		cubeM[i] = new Array(3);
+		for (var j = 0; j < 3; ++j)
+		{
+			cubeM[i][j] = new Array(3);
+			for (var k = 0; k < 3; ++k)
+			{
+				cubeM[i][j][k] = cubes[index];
+			}
+		}
+	}
+
 		}
 		
 		function setCubieMaterial()
