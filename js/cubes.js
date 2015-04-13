@@ -18,10 +18,11 @@
 		
 		function positionCubies()
 		{
+		coeff = 11;
 	for (var i = 0, j = 1; i < 27; ++i) // For in loops, len = whatever.length, i < len
 	{
 		j++; //j = i + 1;
-		cubes[i].position.set(Math.floor(((j%3)-1)*coff), Math.floor((((j%9)/3)-1)*coff), Math.floor(((j%9)-1)*coff));
+		cubes[i].position.set(Math.floor(((j%3)-1))*coff, Math.floor((((j%9)/3)-1))*coff, Math.floor(((j%9)-1))*coff);
 		//cubes[i].position.set(-coff +  (++i)%, y, z); use for matrix
 	}
 	
