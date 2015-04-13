@@ -21,8 +21,9 @@
 		coff = 11;
 	for (var i = 0; i < 27; ++i) // For in loops, len = whatever.length, i < len
 	{
-console.log("i:" + i);
+		console.log("i:" + i);
 		console.log("x: " + Math.floor(((i%3)-1))*coff + ", y: " + Math.floor((((i%9)/3)-1))*coff + ", z: " +Math.floor(((i/9)-1))*coff);
+		cubes[i].position.set(Math.floor(((i%3)-1))*coff, Math.floor((((i%9)/3)-1))*coff, Math.floor(((i/9)-1))*coff);
 
 	}
 	
