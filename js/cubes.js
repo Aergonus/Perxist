@@ -25,7 +25,7 @@ function positionCubies()
 	{
 		console.log("i:" + i);
 		console.log("x: " + Math.floor(((i%3)-1))*coff + ", y: " + Math.floor((((i%9)/3)-1))*coff + ", z: " +Math.floor(((i/9)-1))*coff);
-		cubes[i].position.set(Math.floor(((i%3)-1))*coff, Math.floor((((i%9)/3)-1))*coff, Math.floor(((i/9)-1))*coff);
+		cubies[i].position.set(Math.floor(((i%3)-1))*coff, Math.floor((((i%9)/3)-1))*coff, Math.floor(((i/9)-1))*coff);
 	}
 	for (var i = 0, index = 0; i < 3; ++i, index++)
 	{
@@ -35,7 +35,7 @@ function positionCubies()
 			cubeM[i][j] = new Array(3);
 			for (var k = 0; k < 3; ++k)
 			{
-				cubeM[i][j][k] = cubes[index];
+				cubeM[i][j][k] = cubies[index];
 			}
 		}
 	}
