@@ -8,7 +8,7 @@ function addEventListeners()
 	
 	//scramble
 	//window.document.getElementById("setScramble").addEventListener("onclick", scrambleCube, false);
-	document.getElementById("btn-refresh").addEventListener("click", displayScramble);
+	//document.getElementById("btn-refresh").addEventListener("click", displayScramble);
 }
 
 function onWindowResize(event)
