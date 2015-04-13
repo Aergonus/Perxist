@@ -45,6 +45,7 @@ function positionCubies()
 function setCubieMaterial()
 {
 	var cubieMaterial = [];
+	var cubeMaterial = [];
 	var materialsCube = new Array(27);
 	
 	var redMaterial = new THREE.MeshPhongMaterial({ color: 0xFF2F2F, shininess: 0.25  });
