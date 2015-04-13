@@ -24,7 +24,13 @@
 	</script>
 	
 	<body> <!-- onload='setup();'> -->
-		<div id="container"></div>
+		<div id='gameCanvas'>
+<!-- 	Cube Canvas (Normal WebGL implementation, automatically created by Detector.js)
+			<canvas id="cC" width="512" height="512">
+			Oops ... your browser doesn't support the HTML5 canvas element
+			</canvas>	-->
+		</div>	
+
 		<script type="text/javascript" src="./js/Libraries/three.min.js"></script>
 		<script type="text/javascript" src="./js/Libraries/stats.min.js"></script>
 		<script type="text/javascript" src="./js/Libraries/Detector.js"></script>
@@ -33,15 +39,7 @@
 		<script type="text/javascript" src="./js/cubes.js"></script>
 		<script>console.log("Reached Game");</script>
 		<script type="text/javascript" src='./js/game.js'></script>
-<!-- 	Cube Canvas (Normal WebGL implementation, automatically created by Detector.js)
-		<div id='gameCanvas'>
-			
-			<canvas id="cC" width="512" height="512">
-			Oops ... your browser doesn't support the HTML5 canvas element
-			</canvas>
 
-		</div>	-->
-	
 		<div id="debug"></div>
 	<script>console.log("End Body");</script>
 	</body>
