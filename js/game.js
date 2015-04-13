@@ -74,7 +74,7 @@ function initGL(canvas) {
 function addToDOM()
 {
 	// var canvas = document.getElementById("cC"); // Cube Canvas
-	var container = document.getElementById("gameCanvas");
+	var container = document.getElementById("container");
 	// Attach the render-supplied DOM element (the gameCanvas)
 	container.appendChild(renderer.domElement);
 	console.log("Got Canvas");
