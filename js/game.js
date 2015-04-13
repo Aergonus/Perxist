@@ -136,7 +136,7 @@ function createScene()
 var lights;
 function createLights()
 {
-	var ambientLight = new THREE.AmbientLight(0xFFFFFF);
+	var ambientLight = new THREE.AmbientLight(0x404040);
 	scene.add(ambientLight);
 	
 	lights = new THREE.Object3D();
