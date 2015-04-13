@@ -3,7 +3,7 @@ var renderer, scene,
 	camera,	pointLight, spotLight, highLight;
 
 var stats;
-var clock = new THREE.Clock();
+var clock = new THREE.Clock(), delta = clock.getDelta();
 var cubes = [], objects = [];
 
 // Field variables to set Scene Dimensions
@@ -88,13 +88,17 @@ function addToDOM()
 	container.appendChild(stats.domElement);
 	console.log("Got Stats");
 }
-var ticks = 0;
+	var ticks = 0;
 function tick()
 {	ticks++;
-if (ticks < 10)
-{
-	console.log("Ticking!" + ticks);
-}
+	if (ticks < 10)
+	{
+		console.log("Ticking!" + ticks);
+	}
+	delta = clock.getDelta()
+	cameraControls.update(delta);
+	stats.update();
+	lights.position.copy(camera.position);
 	// Draw THREE.JS scene
 	renderer.render(scene, camera);
 	// Loop draw function call
