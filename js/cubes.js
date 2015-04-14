@@ -414,10 +414,12 @@ function setCubieMaterial()
 							console.log("Green");
 					}
 				}
-				cubeMaterial.push(new THREE.MeshFaceMaterial(materialsCube[i][j][k]));
 			}
 		}
 	}
-
+	for (var i = 0; i < 27; ++i) 
+	{
+		cubeMaterial.push(new THREE.MeshFaceMaterial(materialsCube[i]));
+	}
 	return cubieMaterial;
 }
