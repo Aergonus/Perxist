@@ -334,76 +334,82 @@ function setCubieMaterial()
 	
 	cubieMaterial.push(new THREE.MeshFaceMaterial(materialsCubie26));
 	
-	for (var i = 0, index = 0; i < 3; ++i, index++)
-	{
-		materialsCube[i] = new Array(3);
+	
+	for (var i = 0; i < 3; ++i)
+	{	
+		var index;
 		for (var j = 0; j < 3; ++j)
 		{
-			materialsCube[i][j] = new Array(3);
 			for (var k = 0; k < 3; ++k)
-			{
-				materialsCube[i][j][k] = new Array(6);
+			{	
+				index = i + j * 3 + k * 9;
+				materialsCube[index] = new Array(6);
 				for (var m = 0; m < 6; ++m)
 				{
 					// First Face z direction is red
 					switch(k) {
 						case 0: 
-							materialsCube[i][j][k].push(redMaterial);
+							materialsCube[index].push(redMaterial);
 							break;
 						case 1:
 						case 2:
-							materialsCube[i][j][k].push(blackMaterial);
+							materialsCube[index].push(blackMaterial);
 					}
 					// Back Face z direction is orange
 					switch(k) {
 						case 0: 
 						case 1:
-							materialsCube[i][j][k].push(blackMaterial);
+							materialsCube[index].push(blackMaterial);
 							break;
 						case 2:
-							materialsCube[i][j][k].push(orangeMaterial);
+							materialsCube[index].push(orangeMaterial);
 					}
 					// Top face y direction is yellow
 					switch(j) {
 						case 0:
 						case 1:
-							materialsCube[i][j][k].push(blackMaterial);
+							materialsCube[index].push(blackMaterial);
 							break;
 						case 2:
-							materialsCube[i][j][k].push(yellowMaterial);
+							materialsCube[index].push(yellowMaterial);
 					}
 					// Bottom face y direction is white
 					switch(j) {
 						case 0: 
-							materialsCube[i][j][k].push(whiteMaterial);
+							materialsCube[index].push(whiteMaterial);
 							break;
 						case 1:
 						case 2:
-							materialsCube[i][j][k].push(blackMaterial);
+							materialsCube[index].push(blackMaterial);
 					}
 					// Left face x direction is blue
 					switch(i) {
 						case 0: 
-							materialsCube[i][j][k].push(blueMaterial);
+							materialsCube[index].push(blueMaterial);
 							break;
 						case 1:
 						case 2:
-							materialsCube[i][j][k].push(blackMaterial);
+							materialsCube[index].push(blackMaterial);
 					}
 					// Right face x direction is green
 					switch(i) {
 						case 0:
 						case 1:
-							materialsCube[i][j][k].push(blackMaterial);
+							materialsCube[index].push(blackMaterial);
 							break;
 						case 2:
-							materialsCube[i][j][k].push(greenMaterial);
+							materialsCube[index].push(greenMaterial);
 					}
 				}
-				cubeMaterial.push(new THREE.MeshFaceMaterial(materialsCube[i][j][k]));
 			}
 		}
 	}
-
-	return cubieMaterial;
+	
+	for (var i = 0; i < 27; ++i) 
+	{
+		cubeMaterial.push(new THREE.MeshFaceMaterial(materialsCube[i]));
+	}
+	
+	
+	return cubeMaterial;
 }
