@@ -3,7 +3,7 @@ var cubeM = new Array(3);
 // Cube Array
 var cubes = new Array(27); // General array [] Hard coded here because small #
 // Size of cubes
-var cDim = 10, cEdge = 1.1*cDim;
+var cDim = 10, cEdge = 0.1*cDim;
 var coff = cDim + cEdge;
 
 function createCubes()
