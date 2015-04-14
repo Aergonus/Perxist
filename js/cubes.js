@@ -344,27 +344,27 @@ function setCubieMaterial()
 				console.log(index);
 				materialsCube[index] = [];
 				//for (var m = 0; m < 6; ++m)
-					// First Face z direction is red
-					switch(k) {
+					// Left face x direction is blue
+					switch(i) {
 						case 0: 
-							materialsCube[index].push(redMaterial);
-							console.log("Red");
+							materialsCube[index].push(blueMaterial);
+							console.log("Blue");
 							break;
 						case 1:
 						case 2:
 							materialsCube[index].push(blackMaterial);
 							console.log("Black");
 					}
-					// Back Face z direction is orange
-					switch(k) {
-						case 0: 
+					// Right face x direction is green
+					switch(i) {
+						case 0:
 						case 1:
 							materialsCube[index].push(blackMaterial);
 							console.log("Black");
 							break;
 						case 2:
-							materialsCube[index].push(orangeMaterial);
-							console.log("Orange");
+							materialsCube[index].push(greenMaterial);
+							console.log("Green");
 					}
 					// Top face y direction is yellow
 					switch(j) {
@@ -388,27 +388,28 @@ function setCubieMaterial()
 							materialsCube[index].push(blackMaterial);
 							console.log("Black");
 					}
-					// Left face x direction is blue
-					switch(i) {
+
+					// First Face z direction is red
+					switch(k) {
 						case 0: 
-							materialsCube[index].push(blueMaterial);
-							console.log("Blue");
+							materialsCube[index].push(redMaterial);
+							console.log("Red");
 							break;
 						case 1:
 						case 2:
 							materialsCube[index].push(blackMaterial);
 							console.log("Black");
 					}
-					// Right face x direction is green
-					switch(i) {
-						case 0:
+					// Back Face z direction is orange
+					switch(k) {
+						case 0: 
 						case 1:
 							materialsCube[index].push(blackMaterial);
 							console.log("Black");
 							break;
 						case 2:
-							materialsCube[index].push(greenMaterial);
-							console.log("Green");
+							materialsCube[index].push(orangeMaterial);
+							console.log("Orange");
 					}
 				
 			}
