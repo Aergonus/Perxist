@@ -165,6 +165,7 @@ function createLights()
 	highlight.angle = 60 * Math.PI / 180;
 	highlight.exponent = 100;
 	highlight.target.position.set(0,0,0);
+	lights.add(pointlight);
 	lights.add(spotlight);
 	lights.add(highlight);
 	scene.add(lights);
