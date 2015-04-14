@@ -149,13 +149,13 @@ function createLights()
 	
 	lights = new THREE.Object3D();
 	var spotlight = new THREE.SpotLight(0xFFFFFF, 0.99225);
-	spotlight.position.set(50,50,50);
+	spotlight.position.set(10,10,10);
 	spotlight.angle = 60 * Math.PI / 180;
 	spotlight.exponent = 100;
 	spotlight.target.position.set(0,0,0);
 
 	var highlight = new THREE.SpotLight(0xFFFFFF, 0.99225);
-	highlight.position.set(100,100,250);
+	highlight.position.set(10,10,25);
 	highlight.angle = 60 * Math.PI / 180;
 	highlight.exponent = 100;
 	highlight.target.position.set(0,0,0);
