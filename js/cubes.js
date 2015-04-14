@@ -342,7 +342,7 @@ function setCubieMaterial()
 			{	
 				index = i + j * 3 + k * 9;
 				console.log(index);
-				materialsCube[index] = new Array(6);
+				materialsCube[index] = [];
 				//for (var m = 0; m < 6; ++m)
 					// First Face z direction is red
 					switch(k) {
