@@ -343,6 +343,7 @@ function setCubieMaterial()
 			for (var k = 0; k < 3; ++k)
 			{	
 				index = i + j * 3 + k * 9;
+				console.log(index);
 				materialsCube[index] = new Array(6);
 				for (var m = 0; m < 6; ++m)
 				{
@@ -350,55 +351,67 @@ function setCubieMaterial()
 					switch(k) {
 						case 0: 
 							materialsCube[index].push(redMaterial);
+							console.log("Red");
 							break;
 						case 1:
 						case 2:
 							materialsCube[index].push(blackMaterial);
+							console.log("Black");
 					}
 					// Back Face z direction is orange
 					switch(k) {
 						case 0: 
 						case 1:
 							materialsCube[index].push(blackMaterial);
+							console.log("Black");
 							break;
 						case 2:
 							materialsCube[index].push(orangeMaterial);
+							console.log("Orange");
 					}
 					// Top face y direction is yellow
 					switch(j) {
 						case 0:
 						case 1:
 							materialsCube[index].push(blackMaterial);
+							console.log("Black");
 							break;
 						case 2:
 							materialsCube[index].push(yellowMaterial);
+							console.log("Yellow");
 					}
 					// Bottom face y direction is white
 					switch(j) {
 						case 0: 
 							materialsCube[index].push(whiteMaterial);
+							console.log("White");
 							break;
 						case 1:
 						case 2:
 							materialsCube[index].push(blackMaterial);
+							console.log("Black");
 					}
 					// Left face x direction is blue
 					switch(i) {
 						case 0: 
 							materialsCube[index].push(blueMaterial);
+							console.log("Blue");
 							break;
 						case 1:
 						case 2:
 							materialsCube[index].push(blackMaterial);
+							console.log("Black");
 					}
 					// Right face x direction is green
 					switch(i) {
 						case 0:
 						case 1:
 							materialsCube[index].push(blackMaterial);
+							console.log("Black");
 							break;
 						case 2:
 							materialsCube[index].push(greenMaterial);
+							console.log("Green");
 					}
 				}
 			}
