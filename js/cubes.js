@@ -420,5 +420,5 @@ function setCubieMaterial()
 	{
 		cubeMaterial.push(new THREE.MeshFaceMaterial(materialsCube[i]));
 	}
-	return cubieMaterial;
+	return cubeMaterial;
 }
