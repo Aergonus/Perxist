@@ -347,24 +347,24 @@ function setCubieMaterial()
 					// Left face x direction is blue
 					switch(i) {
 						case 0: 
-							materialsCube[index].push(blueMaterial);
-							console.log("Blue");
-							break;
 						case 1:
-						case 2:
 							materialsCube[index].push(blackMaterial);
 							console.log("Black");
+							break;
+						case 2:
+							materialsCube[index].push(blueMaterial);
+							console.log("Blue");
 					}
 					// Right face x direction is green
 					switch(i) {
 						case 0:
-						case 1:
-							materialsCube[index].push(blackMaterial);
-							console.log("Black");
-							break;
-						case 2:
 							materialsCube[index].push(greenMaterial);
 							console.log("Green");
+							break;
+						case 1:
+						case 2:
+							materialsCube[index].push(blackMaterial);
+							console.log("Black");
 					}
 					// Top face y direction is yellow
 					switch(j) {
@@ -392,24 +392,24 @@ function setCubieMaterial()
 					// First Face z direction is red
 					switch(k) {
 						case 0: 
-							materialsCube[index].push(redMaterial);
-							console.log("Red");
-							break;
 						case 1:
-						case 2:
 							materialsCube[index].push(blackMaterial);
 							console.log("Black");
+							break;
+						case 2:
+							materialsCube[index].push(redMaterial);
+							console.log("Red");
 					}
 					// Back Face z direction is orange
 					switch(k) {
 						case 0: 
-						case 1:
-							materialsCube[index].push(blackMaterial);
-							console.log("Black");
-							break;
-						case 2:
 							materialsCube[index].push(orangeMaterial);
 							console.log("Orange");
+							break;
+						case 1:
+						case 2:
+							materialsCube[index].push(blackMaterial);
+							console.log("Black");
 					}
 				
 			}
