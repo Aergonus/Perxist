@@ -151,7 +151,7 @@ function createLights()
 	var pointlight = new THREE.PointLight(0xFFFFFF, 0.99225);
 	pointlight.position.set(10,10,10);
 	//spotlight.angle = 60 * Math.PI / 180;
-	pointlight.exponent = 100;
+	pointlight.exponent = 10;
 	//spotlight.target.position.set(0,0,0);
 
 	var spotlight = new THREE.SpotLight(0xFFFFFF, 0.99225);
