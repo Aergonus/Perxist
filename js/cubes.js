@@ -336,10 +336,8 @@ function setCubieMaterial()
 	var index = 0;
 	for (var i = 0, index = 0; i < 3; ++i, index++)
 	{
-		materialsCube[i] = new Array(3);
 		for (var j = 0; j < 3; ++j)
 		{
-			materialsCube[i][j] = new Array(3);
 			for (var k = 0; k < 3; ++k)
 			{	
 				index = i + j * 3 + k * 9;
@@ -418,6 +416,7 @@ function setCubieMaterial()
 	}
 	for (var i = 0; i < 27; ++i) 
 	{
+		var cubeMaterials;
 		cubeMaterial.push(new THREE.MeshFaceMaterial(materialsCube[i]));
 	}
 	return cubeMaterial;
