@@ -333,13 +333,13 @@ function setCubieMaterial()
 	materialsCubie26.push(greenMaterial);
 	
 	cubieMaterial.push(new THREE.MeshFaceMaterial(materialsCubie26));
-	
-	
-	for (var i = 0; i < 3; ++i)
-	{	
-		var index;
+	var index = 0;
+	for (var i = 0, index = 0; i < 3; ++i, index++)
+	{
+		materialsCube[i] = new Array(3);
 		for (var j = 0; j < 3; ++j)
 		{
+			materialsCube[i][j] = new Array(3);
 			for (var k = 0; k < 3; ++k)
 			{	
 				index = i + j * 3 + k * 9;
@@ -414,15 +414,10 @@ function setCubieMaterial()
 							console.log("Green");
 					}
 				}
+				cubeMaterial.push(new THREE.MeshFaceMaterial(materialsCube[i][j][k]));
 			}
 		}
 	}
-	
-	for (var i = 0; i < 27; ++i) 
-	{
-		cubeMaterial.push(new THREE.MeshFaceMaterial(materialsCube[i]));
-	}
-	
-	
-	return cubeMaterial;
+
+	return cubieMaterial;
 }
