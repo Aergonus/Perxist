@@ -49,7 +49,7 @@ function rotate()
 {
 //Math.PI / 2 == 1.580000000000001
 	//Rotate Right Face || Left Face || Middle X Face of cube
-	if (attached["R"] === true || attached["L"] === true || attached["X"] === true)
+	if (keyMappings["R"] === true || keyMappings["L"] === true || keyMappings["X"] === true)
 	{	
 		pivot.rotation.x = pivot.rotation.x + direction * pivotSpeed;
 
@@ -61,7 +61,7 @@ function rotate()
 	}
 
 	//Rotate Upper Face || Down Face || Middle Y Face of cube
-	if (attached["U"] === true || attached["D"] === true || attached["Y"] === true)
+	if (keyMappings["U"] === true || keyMappings["D"] === true || keyMappings["Y"] === true)
 	{
 		pivot.rotation.y = pivot.rotation.y + direction * pivotSpeed;
 
@@ -72,7 +72,7 @@ function rotate()
 		}
 	}
 	//Rotate Front Face || Back Face || Middle Z Face of cube
-	if (attached["F"] === true || attached["B"] === true || attached["Z"] === true)
+	if (keyMappings["F"] === true || keyMappings["B"] === true || keyMappings["Z"] === true)
 	{
 		pivot.rotation.z = pivot.rotation.z + direction * pivotSpeed;
 
