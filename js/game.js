@@ -92,6 +92,19 @@ function addToDOM()
 	container.appendChild(stats.domElement);
 	console.log("Got Stats");
 }
+
+function detachAndReset()
+{
+		THREE.SceneUtils.detach(active[i], pivot, scene);
+	active.length = 0;
+	activeCount = 0;
+	
+		
+	pivot.rotation.x = 0;
+	pivot.rotation.y = 0;
+	pivot.rotation.z = 0;
+}
+
 	var ticks = 0;
 function tick()
 {	ticks++;
