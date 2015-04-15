@@ -23,17 +23,17 @@ function setRotate(axis, mode, dim, dir)
 		switch(axis)
 		{
 			case "x":
-				if (position.x == (dim*coff))
+				if (Math.abs(position.x - (dim*coff)) <= cEdge)
 					active.push(cubes[i]);
 				break;
 			
 			case "y":
-				if (position.y == (dim*coff))
+				if (Math.abs(position.y - (dim*coff)) <= cEdge)
 					active.push(cubes[i]);
 				break;
 			
 			case "z":
-				if (position.z == (dim*coff))
+				if (Math.abs(position.z - (dim*coff)) <= cEdge)
 					active.push(cubes[i]);
 				break;
 		}
