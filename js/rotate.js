@@ -20,7 +20,7 @@ function setRotate(axis, mode, dim, dir)
 	for (var i = 0, len = cubes.length; i < len; ++i)
     {
 		var position = getObjWorldPos(cubes[i]);
-		switch(axisOfRot)
+		switch(axis)
 		{
 			case "x":
 				if (position.x == (dim*coff))
