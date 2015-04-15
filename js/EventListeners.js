@@ -48,40 +48,39 @@ function onWindowResize(event)
 function onDocumentKeyDown(event)
 {
 	var axis, bound, shiftR = event.shiftKey;
-	/*
 	var kc = e.keyCode.toString();
 	if (keyMappings.hasOwnProperty(kc)) {
-				actions[keyMappings[kc]] = false;
+				actions[keyMappings[kc]] = true;
 			}
-	*/
+
 	switch(event.keyCode)
 	{
 		case 82: 
-			rotate("x", "R", 1, shiftR);
+			setRotate("x", "R", 1, shiftR);
 			break;
 		case 85:
-			rotate("y", "U", 1, shiftR);
+			setRotate("y", "U", 1, shiftR);
 			break;
 		case 70:
-			rotate("z", "F", 1, shiftR);
+			setRotate("z", "F", 1, shiftR);
 			break;
 		case 88:
-			rotate("x", "X", 0, shiftR);
+			setRotate("x", "X", 0, shiftR);
 			break;
 		case 89:
-			rotate("y", "Y", 0, shiftR);
+			setRotate("y", "Y", 0, shiftR);
 			break;
 		case 90:
-			rotate("z", "Z", 0, shiftR);
+			setRotate("z", "Z", 0, shiftR);
 			break;
 		case 76:
-			rotate("x", "L", -1, shiftR);
+			setRotate("x", "L", -1, shiftR);
 			break;
 		case 68:
-			rotate("y", "D", -1, shiftR);
+			setRotate("y", "D", -1, shiftR);
 			break;
 		case 66:
-			rotate("z", "B", -1, shiftR);
+			setRotate("z", "B", -1, shiftR);
 			break;
 	}
 }
