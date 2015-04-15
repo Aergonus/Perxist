@@ -55,7 +55,7 @@ function rotate()
 	{	
 		pivot.rotation.x = pivot.rotation.x + direction * pivotSpeed;
 
-		if (Math.abs(pivot.rotation.x) <= Math.PI / 2.0)
+		if (Math.abs(pivot.rotation.x) >= Math.PI / 2.0)
 		{
 			pivot.rotation.x = direction * Math.PI / 2.0;
 			endAnimation = true;
@@ -67,7 +67,7 @@ function rotate()
 	{
 		pivot.rotation.y = pivot.rotation.y + direction * pivotSpeed;
 
-		if (Math.abs(pivot.rotation.y) <= Math.PI / 2.0)
+		if (Math.abs(pivot.rotation.y) >= Math.PI / 2.0)
 		{
 			pivot.rotation.y = direction * Math.PI / 2.0;
 			endAnimation = true;
@@ -78,7 +78,7 @@ function rotate()
 	{
 		pivot.rotation.z = pivot.rotation.z + direction * pivotSpeed;
 
-		if (Math.abs(pivot.rotation.z) <= Math.PI / 2.0)
+		if (Math.abs(pivot.rotation.z) >= Math.PI / 2.0)
 		{
 			pivot.rotation.z = direction * Math.PI / 2.0;
 			endAnimation = true;
