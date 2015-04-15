@@ -48,7 +48,7 @@ function onWindowResize(event)
 function onDocumentKeyDown(event)
 {
 	var axis, bound, shiftR = event.shiftKey;
-	var kc = e.keyCode.toString();
+	var kc = event.keyCode.toString();
 	if (keyMappings.hasOwnProperty(kc)) {
 				actions[keyMappings[kc]] = true;
 			}
