@@ -42,7 +42,7 @@ function onWindowResize(event)
 /*	if(min < canvas.width || min < canvas.height)
 		gl.viewport(0,canvas.height-min, min, min); 
 		//resize viewport where min is minimum of innerheight/width*/
-	render();
+	tick();
 }
 		
 function onDocumentKeyDown(event)

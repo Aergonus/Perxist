@@ -103,7 +103,7 @@ function tick()
 	cameraControls.update(delta);
 	stats.update();
 	lights.position.copy(camera.position);
-	var endAnimation = false;
+	endAnimation = false;
 	rotate();
 	// Draw THREE.JS scene
 	renderer.render(scene, camera);

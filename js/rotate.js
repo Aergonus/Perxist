@@ -45,6 +45,8 @@ function setRotate(axis, mode, dim, dir)
 	direction = event.shiftKey ? 1 : -1;
 }
 
+var endAnimation = false;
+
 function rotate() 
 {
 //Math.PI / 2 == 1.580000000000001
