@@ -27,9 +27,11 @@ function addEventListeners()
 
 	//Scrambler
 	document.getElementById("scramble").addEventListener("click", ScrambleCube);
-	// <input type="number" id="myNumber" value="2">
-	// <button onclick="myFunction()">Try it</button>
-	//	var turns = window.document.getElementById("ScrambleNumber").value;
+}
+
+function ScrambleCube()
+{
+console.log("Scrambled");
 }
 
 function onWindowResize(event)
