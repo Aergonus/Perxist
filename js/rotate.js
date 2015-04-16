@@ -40,6 +40,7 @@ function toRot(keyCode, dir)
 	var kc = keyCode.toString();
 	if (keyMappings.hasOwnProperty(kc)) {
 			actions[keyMappings[kc]] = true;
+			console.log(actions);
 		}
 
 	switch(keyCode)
@@ -112,19 +113,19 @@ var rotations = [];
 
 function prepRot()
 {
-	console.log("Called prep");
 	if (rotations.length > 0) 
 	{
 		if (rotations[0].current) 
 		{
-			
+			var kcs = rotations[0].kc.toString();
+			if (keyMappings.hasOwnProperty(kcs)) {
+				actions[keyMappings[kcs]] = true;
+				console.log(actions);
+			}
 		} else 
 		{
-			console.log(rotations);
 			rotations[0].current = true;
-			console.log(rotations);
 			toRot(rotations[0].kc, rotations[0].dir);
-			console.log(rotations);
 		}
 	}
 }
