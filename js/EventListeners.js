@@ -37,7 +37,7 @@ function ScrambleCube()
 	console.log( rotKeys );
 	var rKC = rotKeys[Math.floor(Math.random()*rotKeys.length)];
 	console.log( "Init rKC: " + rKC);
-	for (var i = 0; i < nRot; ++i) 
+	for (var i = 0, len = nRot.value; i < len; ++i) 
 	{
 		console.log( "Loop #" + i );
 		rKC = rotKeys[Math.floor(Math.random()*rotKeys.length)];
