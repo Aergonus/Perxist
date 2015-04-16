@@ -167,6 +167,8 @@ function rotate()
 		}
 	}
 	
+	console.log(pivot.rotation);
+	
 	renderer.render(scene, camera);
 	window.requestAnimationFrame(tick);
 	
