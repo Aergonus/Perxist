@@ -98,7 +98,9 @@ function detachAndReset()
 	for (var i = 0, len = active.length; i < len; ++i)
 		THREE.SceneUtils.detach(active[i], pivot, scene);
 	active.length = 0;
-	activeCount = 0;
+	activeCount -= 1;
+	
+	console.log(actions);
 	
 	for(var i in actions)
 		actions[i] = false;
