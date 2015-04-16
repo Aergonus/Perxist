@@ -4,8 +4,15 @@ function getRandomInt(min, max) {
 
 function ScrambleCube()
 {
-	nRot = document.getElementById("ScrambleNumber");
-	console.log(nRot);
-	var rKC = keyMappings[Math.floor(Math.random()*keyMappings.length)];
-	console.log(rKC);
+	var nRot = document.getElementById("ScrambleNumber");
+	var rotKeys = Object.keys(keyMappings);
+	var rKC = rotKeys[Math.floor(Math.random()*rotKeys.length)];
+	for (var i = 0; i < nRot; ++i) 
+	{
+		rKC = rotKeys[Math.floor(Math.random()*rotKeys.length)];
+		// TODO: Random directions
+		direction = event.shiftKey ? 1 : -1;
+		toRot(rKC, direction);
+	}
 }
+

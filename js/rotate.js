@@ -21,6 +21,11 @@ for (var k in keyMappings) {
 	actions[keyMappings[k]] = false;
 }
 
+function randProp (obj) {
+    var keys = Object.keys(obj)
+    return obj[keys[ keys.length * Math.random() << 0]];
+};
+
 function getObjWorldPos(object)
 {
 	scene.updateMatrixWorld(true);
