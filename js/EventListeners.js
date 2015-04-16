@@ -27,7 +27,8 @@ function onDocumentKeyDown(event)
 {
 	console.log("Keydown Listener");
 	direction = event.shiftKey ? 1 : -1;
-	var rot = { "kc" : event.keyCode, "dir" : direction, "current" : false };
+	var rot = new Object();
+	rot = { "kc" : event.keyCode, "dir" : direction, "current" : false };
 	rotations.push(rot);
 	//toRot(event.keyCode, event.shiftKey);
 }
@@ -45,7 +46,8 @@ function ScrambleCube()
 		// TODO: Random directions
 		// toRot(rKC, direction);
 		direction = (Math.random() < 0.5) ? 1 : -1;
-		var rot = { "kc" : rKC, "dir" : direction, "current" : false };
+		var rot = new Object();
+		rot = { "kc" : rKC, "dir" : direction, "current" : false };
 		rotations.push(rot);
 	}
 }

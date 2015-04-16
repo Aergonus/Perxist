@@ -114,13 +114,12 @@ function prepRot()
 	{
 		if (rotations[0].current) 
 		{
-			var kcs = rotations[0].kc.toString();
-			if (keyMappings.hasOwnProperty(kcs)) {
-				actions[keyMappings[kcs]] = true;
-				console.log(actions);
-			}
+			console.log(rotations[0]);
+			console.log("cur: " + rotations[0].current + ", kc: " + rotations[0].kc + ", len: " + rotations.length);
 		} else 
 		{
+			console.log(rotations[0]);
+			console.log("cur: " + rotations[0].current + ", kc: " + rotations[0].kc + ", len: " + rotations.length);
 			rotations[0].current = true;
 			toRot(rotations[0].kc, rotations[0].dir);
 		}
@@ -171,7 +170,16 @@ function rotate()
 	
 	if (endAnimation)
 	{
+		console.log("Popping");
 		rotations.pop();
 		detachAndReset();
+		if (rotations.length > 0) 
+		{
+			if (rotations[0].current) 
+			{
+				rotations[0].current = true;
+				toRot(rotations[0].kc, rotations[0].dir);
+			}
+		}
 	}
 }
