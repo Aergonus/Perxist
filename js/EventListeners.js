@@ -44,7 +44,7 @@ function ScrambleCube()
 		console.log( "Current rKC:" + rKC );
 		// TODO: Random directions
 		// toRot(rKC, direction);
-		direction = (Math.random() < 0.5) 1 : -1;
+		direction = (Math.random() < 0.5) ? 1 : -1;
 		var rot = { "kc" : rKC, "dir" : direction, "current" : false };
 	}
 }
