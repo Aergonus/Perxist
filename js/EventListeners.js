@@ -24,6 +24,7 @@ function onWindowResize(event)
 function onDocumentKeyDown(event)
 {
 	console.log("Keydown Listener");
+	direction = event.shiftKey ? 1 : -1;
 	toRot(event.keyCode, event.shiftKey);
 }
 

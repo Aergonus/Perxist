@@ -107,8 +107,6 @@ function setRotate(axis, mode, dim, dir)
 	
 	for(var i = 0, len = active.length; i < len; ++i)
 		THREE.SceneUtils.attach(active[i], scene, pivot);
-	
-	direction = event.shiftKey ? 1 : -1;
 }
 
 var endAnimation = false;
