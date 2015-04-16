@@ -2,6 +2,24 @@ var active = [];
 var activeCount = 0;
 var pivot = new THREE.Object3D(), pivotSpeed = 0.091;
 var direction; 
+var iv = null;
+var actions = {};
+var keyMappings = 
+{
+	'66' : 'B',
+	'68' : 'D',
+	'70' : 'F',
+	'76' : 'L',
+	'82' : 'R',
+	'85' : 'U',
+	'88' : 'X',
+	'89' : 'Y',
+	'90' : 'Z'
+};	// Add up down left right?
+
+for (var k in keyMappings) {
+	actions[keyMappings[k]] = false;
+}
 
 function getObjWorldPos(object)
 {
@@ -9,6 +27,47 @@ function getObjWorldPos(object)
 	var position = new THREE.Vector3();
 	position.setFromMatrixPosition(object.matrixWorld);
 	return position;
+}
+
+function toRot(keyCode, dir) 
+{
+	var kc = keyCode.toString();
+	console.log(keyCode.toString());
+	if (keyMappings.hasOwnProperty(kc)) {
+			actions[keyMappings[kc]] = true;
+		}
+
+	switch(keyCode)
+	{
+		case 82: 
+			setRotate("x", "R", 1, dir);
+			break;
+		case 85:
+			setRotate("y", "U", 1, dir);
+			break;
+		case 70:
+			setRotate("z", "F", 1, dir);
+			break;
+		case 88:
+			setRotate("x", "X", 0, dir);
+			break;
+		case 89:
+			setRotate("y", "Y", 0, dir);
+			break;
+		case 90:
+			setRotate("z", "Z", 0, dir);
+			break;
+		case 76:
+			setRotate("x", "L", -1, dir);
+			break;
+		case 68:
+			setRotate("y", "D", -1, dir);
+			break;
+		case 66:
+			setRotate("z", "B", -1, dir);
+			break;
+	}
+
 }
 
 function setRotate(axis, mode, dim, dir)
