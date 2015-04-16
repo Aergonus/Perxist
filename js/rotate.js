@@ -38,10 +38,8 @@ function toRot(keyCode, dir)
 {
 	console.log("toRot kc:" + keyCode);
 	var kc = keyCode.toString();
-	console.log(keyCode.toString());
 	if (keyMappings.hasOwnProperty(kc)) {
 			actions[keyMappings[kc]] = true;
-			console.log(actions[keyMappings[kc]]);
 		}
 
 	switch(keyCode)
@@ -79,10 +77,11 @@ function toRot(keyCode, dir)
 
 function setRotate(axis, mode, dim, dir)
 {
+/*
 	activeCount += 1;
 	if(activeCount >= 2)
 		return;
-		
+*/
 	for (var i = 0, len = cubes.length; i < len; ++i)
     {
 		var position = getObjWorldPos(cubes[i]);
@@ -113,6 +112,7 @@ var rotations = [];
 
 function prepRot()
 {
+	console.log("Called prep");
 	if (rotations.length > 0) 
 	{
 		if (rotations[0].current) 
