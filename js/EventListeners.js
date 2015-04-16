@@ -46,5 +46,6 @@ function ScrambleCube()
 		// toRot(rKC, direction);
 		direction = (Math.random() < 0.5) ? 1 : -1;
 		var rot = { "kc" : rKC, "dir" : direction, "current" : false };
+		rotations.push(rot);
 	}
 }

@@ -120,8 +120,11 @@ function prepRot()
 			
 		} else 
 		{
+			console.log(rotations);
 			rotations[0].current = true;
+			console.log(rotations);
 			toRot(rotations[0].kc, rotations[0].dir);
+			console.log(rotations);
 		}
 	}
 }
@@ -169,7 +172,11 @@ function rotate()
 	renderer.render(scene, camera);
 	if (endAnimation)
 	{
+		console.log(rotations);
 		rotations.pop();
+		console.log(rotations);
 		detachAndReset();
+		console.log(pivot);
+		console.log(actions);
 	}
 }
