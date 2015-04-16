@@ -120,6 +120,7 @@ function tick()
 	stats.update();
 	lights.position.copy(camera.position);
 	endAnimation = false;
+	prepRot();
 	rotate();
 	// Draw THREE.JS scene
 	renderer.render(scene, camera);

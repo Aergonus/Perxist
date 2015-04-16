@@ -20,32 +20,31 @@ function onWindowResize(event)
 		//resize viewport where min is minimum of innerheight/width*/
 	tick();
 }
-		
+
+var rotations = [];
+
 function onDocumentKeyDown(event)
 {
 	console.log("Keydown Listener");
 	direction = event.shiftKey ? 1 : -1;
-	toRot(event.keyCode, event.shiftKey);
+	var rot = { "kc" : event.keyCode, "dir" : direction, "current" : false };
+	rotations.push(rot);
+	//toRot(event.keyCode, event.shiftKey);
 }
 
-var rotations = [];
 function ScrambleCube()
 {
-	console.log( "Scrambling!" );
 	var nRot = document.getElementById("ScrambleNumber");
-	console.log( nRot );
 	var rotKeys = Object.keys(keyMappings);
-	console.log( rotKeys );
 	var rKC = rotKeys[Math.floor(Math.random()*rotKeys.length)];
-	console.log( "Init rKC: " + rKC);
 	for (var i = 0, len = nRot.value; i < len; ++i) 
 	{
 		console.log( "Loop #" + i );
 		rKC = rotKeys[Math.floor(Math.random()*rotKeys.length)];
 		console.log( "Current rKC:" + rKC );
 		// TODO: Random directions
-		toRot(rKC, direction);
-		rotations.push(function() {toRot(rKC, direction)});
-		console.log( "Rotated!");
+		// toRot(rKC, direction);
+		direction = (Math.random() < 0.5) 1 : -1;
+		var rot = { "kc" : rKC, "dir" : direction, "current" : false };
 	}
 }

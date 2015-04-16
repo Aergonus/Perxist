@@ -109,6 +109,23 @@ function setRotate(axis, mode, dim, dir)
 		THREE.SceneUtils.attach(active[i], scene, pivot);
 }
 
+var rotations = [];
+
+function prepRot()
+{
+	if (rotations.length > 0) 
+	{
+		if (rotations[0].current) 
+		{
+			
+		} else 
+		{
+			rotations[0].current = true;
+			toRot(rotations[0].kc, rotations[0].dir);
+		}
+	}
+}
+
 var endAnimation = false;
 
 function rotate() 
@@ -151,5 +168,8 @@ function rotate()
 	
 	renderer.render(scene, camera);
 	if (endAnimation)
+	{
+		rotations.pop();
 		detachAndReset();
+	}
 }
