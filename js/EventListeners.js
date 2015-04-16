@@ -40,7 +40,7 @@ function ScrambleCube()
 	for (var i = 0, len = nRot.value; i < len; ++i) 
 	{
 		console.log( "Loop #" + i );
-		rKC = rotKeys[Math.floor(Math.random()*rotKeys.length)];
+		rKC = parseInt(rotKeys[Math.floor(Math.random()*rotKeys.length)]);
 		console.log( "Current rKC:" + rKC );
 		// TODO: Random directions
 		// toRot(rKC, direction);

@@ -168,15 +168,10 @@ function rotate()
 	}
 	
 	renderer.render(scene, camera);
-	window.requestAnimationFrame(tick);
 	
 	if (endAnimation)
 	{
-		console.log(rotations);
 		rotations.pop();
-		console.log(rotations);
 		detachAndReset();
-		console.log(pivot);
-		console.log(actions);
 	}
 }
