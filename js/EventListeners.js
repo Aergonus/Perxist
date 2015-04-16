@@ -26,10 +26,14 @@ var rotations = [];
 function onDocumentKeyDown(event)
 {
 	console.log("Keydown Listener");
-	direction = event.shiftKey ? 1 : -1;
-	var rot = new Object();
-	rot = { "kc" : event.keyCode, "dir" : direction, "current" : false };
-	rotations.push(rot);
+	var kc = event.keyCode.toString();
+	if (keyMappings.hasOwnProperty(kc)) 
+	{
+		direction = event.shiftKey ? 1 : -1;
+		var rot = new Object();
+		rot = { "kc" : event.keyCode, "dir" : direction, "current" : false };
+		rotations.push(rot);
+	}
 	//toRot(event.keyCode, event.shiftKey);
 }
 

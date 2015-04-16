@@ -112,11 +112,7 @@ function prepRot()
 {
 	if (rotations.length > 0) 
 	{
-		if (rotations[0].current) 
-		{
-			console.log(rotations[0]);
-			console.log("cur: " + rotations[0].current + ", kc: " + rotations[0].kc + ", len: " + rotations.length);
-		} else 
+		if (!rotations[0].current) 
 		{
 			console.log(rotations[0]);
 			console.log("cur: " + rotations[0].current + ", kc: " + rotations[0].kc + ", len: " + rotations.length);
@@ -171,7 +167,7 @@ function rotate()
 	if (endAnimation)
 	{
 		console.log("Popping");
-		rotations.pop();
+		rotations.shift();
 		detachAndReset();
 		if (rotations.length > 0) 
 		{
