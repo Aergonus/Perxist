@@ -78,11 +78,7 @@ function toRot(keyCode, dir)
 
 function setRotate(axis, mode, dim, dir)
 {
-/*
-	activeCount += 1;
-	if(activeCount >= 2)
-		return;
-*/
+	console.log("Set");
 	for (var i = 0, len = cubes.length; i < len; ++i)
     {
 		var position = getObjWorldPos(cubes[i]);
@@ -107,6 +103,7 @@ function setRotate(axis, mode, dim, dir)
 	
 	for(var i = 0, len = active.length; i < len; ++i)
 		THREE.SceneUtils.attach(active[i], scene, pivot);
+	console.log(active);
 }
 
 var rotations = [];
@@ -171,6 +168,8 @@ function rotate()
 	}
 	
 	renderer.render(scene, camera);
+	window.requestAnimationFrame(tick);
+	
 	if (endAnimation)
 	{
 		console.log(rotations);
