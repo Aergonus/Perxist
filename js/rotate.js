@@ -36,10 +36,12 @@ function getObjWorldPos(object)
 
 function toRot(keyCode, dir) 
 {
+	console.log("toRot kc:" + keyCode);
 	var kc = keyCode.toString();
 	console.log(keyCode.toString());
 	if (keyMappings.hasOwnProperty(kc)) {
 			actions[keyMappings[kc]] = true;
+			console.log(actions[keyMappings[kc]]);
 		}
 
 	switch(keyCode)
@@ -72,7 +74,7 @@ function toRot(keyCode, dir)
 			setRotate("z", "B", -1, dir);
 			break;
 	}
-
+	console.log( "End of toRot");
 }
 
 function setRotate(axis, mode, dim, dir)
