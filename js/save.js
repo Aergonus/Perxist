@@ -34,7 +34,7 @@ function saveCubes()
 function loadCubes() 
 {
 	try {
-	var saveJSON = document.getElementById("SaveJSON");
+	var saveJSON = document.getElementById("import");
 	var saveData = JSON.parse(saveJSON.value);
 	for(var i = 0; i < 27; ++i)
 	{
