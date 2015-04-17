@@ -10,10 +10,10 @@ function addEventListeners()
 	document.getElementById("scramble").addEventListener("click", ScrambleCube);
 	
 	//Save File Exporter
-	document.getElementById("export").addEventListener("click", save);
+	document.getElementById("export").addEventListener("click", saveCubes);
 	
 	//Save File Importer
-	document.getElementById("import").addEventListener("click", load);
+	document.getElementById("import").addEventListener("click", loadCubes);
 }
 
 function onWindowResize(event)
@@ -62,12 +62,45 @@ function ScrambleCube()
 	}
 }
 
-function save()
+var cubesPos = {
+	'position' : []
+	'rotation' : []
+};
+
+function saveCubes() 
 {
-	saveCubes();
+	for(var i = 0; i < 27; ++i)
+	{
+		cubesPos.position.push(JSON.parse(JSON.stringify(cubes[i].position)));
+		cubesPos.rotation.push(JSON.parse(JSON.stringify(cubes[i].rotation)));
+	}
+	var cPosJSON = JSON.stringify(cubesPos);
+	
+	try {
+    var isFileSaverSupported = !!new Blob;
+	} catch (e) {
+		alert("Unsupported! Save text (Copy & paste):" + cPosJSON);
+	}
+	try {
+	var blob = new Blob( [cPosJSON], {type: "text/plain;charset=utf-8"});
+	var fileName = document.getElementById("file");
+	saveAs(blob, fileName.value);
+	} catch (e) {
+		alert("Save Failed");
+	}
 }
 
-function load()
+function loadCubes() 
 {
-	loadCubes();
+	try {
+	var saveJSON = document.getElementById("SaveJSON");
+	var saveData = JSON.parse(saveJSON.value);
+	for(var i = 0; i < 27; ++i)
+	{
+		cubes[i].position.set(saveData.position[i].x, saveData.position[i].y, saveData.position[i].z);
+		cubes[i].rotation.set(saveData.rotation[i].x, saveData.rotation[i].y, saveData.rotation[i].z);
+	}
+	} catch (e) {
+		alert("Load Failed");
+	}
 }
