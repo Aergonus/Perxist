@@ -11,8 +11,6 @@ var canvasWidth = window.innerWidth;
 var canvasHeight = window.innerHeight;
 var aspectRatio = canvasWidth / canvasHeight;
 
-console.log("W" + canvasWidth + ", H" + canvasHeight);
-
 // Camera Attributes
 var VIEW_ANGLE = 50,
   ASPECT_RATIO = aspectRatio,
@@ -61,21 +59,6 @@ function init()
 	
 	addEventListeners();
 }
-
-// Obtained from gpjt's WebGL-Lessons
-function initGL(canvas) {
-	var gl;
-	try {
-		gl = canvas.getContext("experimental-webgl");
-		gl.viewportWidth = canvas.width;
-		gl.viewportHeight = canvas.height;
-	} catch (e) {
-	}
-	if (!gl) {
-		alert("Could not initialise WebGL, sorry :-(");
-	}
-}
-// End of modified code
 
 function addToDOM()
 {
@@ -159,7 +142,6 @@ function createScene()
 	console.log("Populated Cubes!");
 }
 
-// Obtained from XanderWraik's Rubik Scrambler
 var lights;
 function createLights()
 {
@@ -192,7 +174,62 @@ function createLights()
 
 function errorMessage()
 {
-	alert("Snap! It seems WebGL is either not supported or your GPU is blacklisted! Switching to Canvas Renderer... Will get slow!");
+	alert("Oh no! It seems WebGL is either not supported or your GPU is blacklisted! Switching to Canvas Renderer... Will get slow!");
 	return new THREE.CanvasRenderer();
 }
-// End of modified code
+
+function checkSolved()
+{
+	var lowx = [], highx = [],
+	lowy = [], highy = [],
+	lowz = [], highz = [];
+	var solved = true;
+	
+	for (var i = 0, len = cubes.length; i < len; ++i)
+    {
+		var position = getObjWorldPos(cubes[i]);
+		console.log(position);
+		console.log("X:" + (Math.abs(position.x) + cEdge) + "Y:" + (Math.abs(position.y) + cEdge) +"Z:" + (Math.abs(position.y) + cEdge));
+		if ((Math.abs(position.x) + cEdge) >= coff)
+			(position.x > 0) ? highx.push(cubes[i].material.materials) : lowx.push(cubes[i].material.materials);
+		if ((Math.abs(position.y) + cEdge) >= coff)
+			(position.y > 0) ? highy.push(cubes[i].material.materials) : lowy.push(cubes[i].material.materials);
+		if ((Math.abs(position.z) + cEdge) >= coff)
+			(position.z > 0) ? highz.push(cubes[i].material.materials) : lowz.push(cubes[i].material.materials);
+	}
+	var sides = [highx, lowx, highy, lowy, highz, lowz];
+	for (var i = 0, len = sides.length; i < len; ++i)//(cMA in CAtoCheck) 
+	{
+		solved = solved && checkCubes(sides[i], i);
+		if (!solved)
+			return solved;
+	}
+	
+	return solved;
+}
+
+function checkCubes(cubeArray, access)
+{
+	var sideSolved = true;
+	var refMat = matArray[access];
+	for (matArray in cubeArray) 
+	{
+		if (matArray[access] == redMaterial)
+			console.log("Red");
+		if (matArray[access] == greenMaterial)
+			console.log("Green");
+		if (matArray[access] == blueMaterial)
+			console.log("Blue");
+		if (matArray[access] == yellowMaterial)
+			console.log("Yellow");
+		if (matArray[access] == orangeMaterial)
+			console.log("Orange");
+		if (matArray[access] == whiteMaterial)
+			console.log("White");
+			
+		sideSolved = sideSolved && (matArray[access] == refMat);
+		if (!sideSolved)
+			return sideSolved;
+	}
+	return sideSolved;
+}

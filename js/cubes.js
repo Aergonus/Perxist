@@ -43,28 +43,28 @@ function positionCubes()
 	}
 }
 
+var redMaterial = new THREE.MeshPhongMaterial({ color: 0xFF2F2F, shininess: 0.25  });
+var greenMaterial = new THREE.MeshPhongMaterial({ color: 0x24FF24, shininess: 0.25  });
+var blueMaterial = new THREE.MeshPhongMaterial({ color: 0x3E3EFF , shininess: 0.25 });
+var blackMaterial = new THREE.MeshPhongMaterial({ color: 0x000000, shininess: 0.25 });
+var yellowMaterial = new THREE.MeshPhongMaterial({ color: 0xF7FC12, shininess: 0.25  });
+var orangeMaterial = new THREE.MeshPhongMaterial({ color: 0xFA6721, shininess: 0.25  });
+var whiteMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, shininess: 0.205 });
+
+// Black Specular 
+var blackHex = 0x010101;
+redMaterial.specular.setHex(blackHex);
+greenMaterial.specular.setHex(blackHex);
+blueMaterial.specular.setHex(blackHex);
+blackMaterial.specular.setHex(blackHex);
+yellowMaterial.specular.setHex(blackHex);
+orangeMaterial.specular.setHex(blackHex);
+whiteMaterial.specular.setHex(blackHex);
+	
 function setCubeMaterial() 
 {
 	var cubeMaterial = [];
 	var materialsCube = new Array(27);
-	
-	var redMaterial = new THREE.MeshPhongMaterial({ color: 0xFF2F2F, shininess: 0.25  });
-	var greenMaterial = new THREE.MeshPhongMaterial({ color: 0x24FF24, shininess: 0.25  });
-	var blueMaterial = new THREE.MeshPhongMaterial({ color: 0x3E3EFF , shininess: 0.25 });
-	var blackMaterial = new THREE.MeshPhongMaterial({ color: 0x000000, shininess: 0.25 });
-	var yellowMaterial = new THREE.MeshPhongMaterial({ color: 0xF7FC12, shininess: 0.25  });
-	var orangeMaterial = new THREE.MeshPhongMaterial({ color: 0xFA6721, shininess: 0.25  });
-	var whiteMaterial = new THREE.MeshPhongMaterial({color: 0xFFFFFF, shininess: 0.205 });
-	
-	// Black Specular 
-	var blackHex = 0x010101;
-	redMaterial.specular.setHex(blackHex);
-	greenMaterial.specular.setHex(blackHex);
-	blueMaterial.specular.setHex(blackHex);
-	blackMaterial.specular.setHex(blackHex);
-	yellowMaterial.specular.setHex(blackHex);
-	orangeMaterial.specular.setHex(blackHex);
-	whiteMaterial.specular.setHex(blackHex);
 
 	for (var i = 0, index = 0; i < 3; ++i)
 	{
