@@ -15,19 +15,21 @@ function saveCubes()
 	} catch (e) {
 		alert("Unsupported! Save text (Copy & paste):" + cPosJSON);
 	}
-	
+	try {
 	var blob = new Blob( cPosJSON, {type: "text/plain;charset=utf-8"});
-	var fileName = document.getElementById("FileName");
-	saveAs(blob, fileName);
-	
+	var fileName = document.getElementById("file");
+	saveAs(blob, fileName.value);
+	} catch (e) {}
 }
 
 function loadCubes() 
 {
+	try {
 	var saveJSON = document.getElementById("SaveJSON");
-	var saveData = JSON.parse(saveJSON);
+	var saveData = JSON.parse(saveJSON.value);
 	for(var i = 0; i < 27; ++i)
 	{
 		cubes[i].position.set(saveData.position[i].x, saveData.position[i].y, saveData.position[i].z);
 	}
+	} catch (e) {}
 }
