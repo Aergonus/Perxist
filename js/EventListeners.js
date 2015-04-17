@@ -67,6 +67,8 @@ var cubesPos = {
 	'rotation' : []
 };
 
+var cPosJSON;
+
 function saveCubes() 
 {
 	for(var i = 0; i < 27; ++i)
@@ -74,7 +76,7 @@ function saveCubes()
 		cubesPos.position.push(JSON.parse(JSON.stringify(cubes[i].position)));
 		cubesPos.rotation.push(JSON.parse(JSON.stringify(cubes[i].rotation)));
 	}
-	var cPosJSON = JSON.stringify(cubesPos);
+	cPosJSON = JSON.stringify(cubesPos);
 	
 	try {
     var isFileSaverSupported = !!new Blob;
@@ -90,17 +92,20 @@ function saveCubes()
 	}
 }
 
+var saveJSON; 
 function loadCubes() 
 {
-	try {
-	var saveJSON = document.getElementById("SaveJSON");
+	console.log("Entered load!");
+	saveJSON = document.getElementById("SaveJSON");
+	console.log("saveJSON" + saveJSON + "Equal?" + (saveJSON == cPosJSON));
 	var saveData = JSON.parse(saveJSON.value);
+	console.log("saveData" + saveData);
 	for(var i = 0; i < 27; ++i)
 	{
-		cubes[i].position.set(saveData.position[i].x, saveData.position[i].y, saveData.position[i].z);
-		cubes[i].rotation.set(saveData.rotation[i].x, saveData.rotation[i].y, saveData.rotation[i].z);
+		console.log("loop i " + i);
+		cubes[i].position.set(saveData.position[i].x,  saveData.position[i].y,  saveData.position[i].z);
+		cubes[i].rotation.set(saveData.rotation[i]._x, saveData.rotation[i]._y, saveData.rotation[i]._z);
 	}
-	} catch (e) {
-		alert("Load Failed");
-	}
+	console.log("Exited load!");
+	reportSolved();
 }
