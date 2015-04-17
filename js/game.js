@@ -233,3 +233,8 @@ function checkCubes(cubeArray, access)
 	}
 	return sideSolved;
 }
+
+function reportSolved()
+{
+	document.getElementById("debug").textContent = checkSolved() ? "Solved!" : "Unsolved";
+}

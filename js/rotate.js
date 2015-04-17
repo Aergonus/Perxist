@@ -177,5 +177,6 @@ function rotate()
 				toRot(rotations[0].kc, rotations[0].dir);
 			}
 		}
+		reportSolved();
 	}
 }
