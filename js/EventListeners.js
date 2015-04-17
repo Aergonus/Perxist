@@ -63,7 +63,7 @@ function ScrambleCube()
 }
 
 var cubesPos = {
-	'position' : []
+	'position' : [],
 	'rotation' : []
 };
 
