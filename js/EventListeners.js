@@ -10,10 +10,10 @@ function addEventListeners()
 	document.getElementById("scramble").addEventListener("click", ScrambleCube);
 	
 	//Save File Exporter
-	document.getElementById("export").addEventListener("click", saveCubes);
+	document.getElementById("export").addEventListener("click", save);
 	
 	//Save File Importer
-	document.getElementById("import").addEventListener("click", loadCube);
+	document.getElementById("import").addEventListener("click", load);
 }
 
 function onWindowResize(event)
@@ -60,4 +60,14 @@ function ScrambleCube()
 		rot = { "kc" : rKC, "dir" : direction, "current" : false };
 		rotations.push(rot);
 	}
+}
+
+function save()
+{
+	saveCubes();
+}
+
+function load()
+{
+	loadCubes();
 }
