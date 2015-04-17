@@ -33,12 +33,17 @@ function saveCubes()
 
 function loadCubes() 
 {
+	console.log("Entered load!");
 	var saveJSON = document.getElementById("SaveJSON");
+	console.log("saveJSON" + saveJSON);
 	var saveData = JSON.parse(saveJSON.value);
+	console.log("saveData" + saveData);
 	for(var i = 0; i < 27; ++i)
 	{
-		cubes[i].position.set(saveData.position[i].x, saveData.position[i].y, saveData.position[i].z);
+		console.log("loop i " + i);
+		cubes[i].position.set(saveData.position[i].x,  saveData.position[i].y,  saveData.position[i].z);
 		cubes[i].rotation.set(saveData.rotation[i]._x, saveData.rotation[i]._y, saveData.rotation[i]._z);
 	}
+	console.log("Exited load!");
 	reportSolved();
 }
