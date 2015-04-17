@@ -5,6 +5,11 @@ var cubesPos = {
 
 function saveCubes() 
 {
+	cubesPos = {
+	'position' : []
+	'rotation' : []
+	};
+	
 	for(var i = 0; i < 27; ++i)
 	{
 		cubesPos.position.push(JSON.parse(JSON.stringify(cubes[i].position)));
@@ -39,4 +44,5 @@ function loadCubes()
 	} catch (e) {
 		alert("Load Failed");
 	}
+	reportSolved();
 }
