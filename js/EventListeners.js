@@ -97,8 +97,8 @@ function loadCubes()
 	var saveData = JSON.parse(saveJSON.value);
 	for(var i = 0; i < 27; ++i)
 	{
-		cubes[i].position.set(saveData.position[i].x, saveData.position[i].y, saveData.position[i].z);
-		cubes[i].rotation.set(saveData.rotation[i].x, saveData.rotation[i].y, saveData.rotation[i].z);
+		cubes[i].position.set(saveData.position[i].x,  saveData.position[i].y,  saveData.position[i].z);
+		cubes[i].rotation.set(saveData.rotation[i]._x, saveData.rotation[i]._y, saveData.rotation[i]._z);
 	}
 	} catch (e) {
 		alert("Load Failed");
