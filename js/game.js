@@ -211,23 +211,23 @@ function checkSolved()
 function checkCubes(cubeArray, access)
 {
 	var sideSolved = true;
-	var refMat = cubeArray[access];
-	for (matArray in cubeArray) 
+	var refMat = cubeArray[access][access];
+	for (var i = 0, len = cubeArray.length; i < len; ++i)//(matArray in cubeArray) 
 	{
-		if (matArray[access] == redMaterial)
+		if (cubeArray[i][access] == redMaterial)
 			console.log("Red");
-		if (matArray[access] == greenMaterial)
+		if (cubeArray[i][access] == greenMaterial)
 			console.log("Green");
-		if (matArray[access] == blueMaterial)
+		if (cubeArray[i][access] == blueMaterial)
 			console.log("Blue");
-		if (matArray[access] == yellowMaterial)
+		if (cubeArray[i][access] == yellowMaterial)
 			console.log("Yellow");
-		if (matArray[access] == orangeMaterial)
+		if (cubeArray[i][access] == orangeMaterial)
 			console.log("Orange");
-		if (matArray[access] == whiteMaterial)
+		if (cubeArray[i][access] == whiteMaterial)
 			console.log("White");
 			
-		sideSolved = sideSolved && (matArray[access] == refMat);
+		sideSolved = sideSolved && (cubeArray[i][access] == refMat);
 		if (!sideSolved)
 			return sideSolved;
 	}
