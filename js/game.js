@@ -211,7 +211,7 @@ function checkSolved()
 function checkCubes(cubeArray, access)
 {
 	var sideSolved = true;
-	var refMat = matArray[access];
+	var refMat = cubeArray[access];
 	for (matArray in cubeArray) 
 	{
 		if (matArray[access] == redMaterial)
