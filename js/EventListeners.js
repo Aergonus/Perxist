@@ -8,6 +8,12 @@ function addEventListeners()
 
 	//Scrambler
 	document.getElementById("scramble").addEventListener("click", ScrambleCube);
+	
+	//Save File Exporter
+	document.getElementById("export").addEventListener("click", saveCubes);
+	
+	//Save File Importer
+	document.getElementById("import").addEventListener("click", loadCube);
 }
 
 function onWindowResize(event)
