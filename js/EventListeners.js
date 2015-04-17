@@ -97,7 +97,7 @@ function saveCubes()
 
 function loadCubes() 
 {
-	if (rotations.length != 0)
+	if (rotations.length == 0)
 	{
 		try {
 		var saveJSON = document.getElementById("SaveJSON");
