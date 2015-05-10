@@ -2,22 +2,10 @@
 <html lang="en">
 
     <head>
-	<div id = "Instructions">
-	To play, press any of the following keys: (Shift reverses)
-	'66' : 'B', Back
-	'68' : 'D', Down
-	'70' : 'F', Front
-	'76' : 'L', Left
-	'82' : 'R', Right
-	'85' : 'U', Up
-	'88' : 'X', X Middle
-	'89' : 'Y', Y Middle
-	'90' : 'Z'  Z Middle
-	</div>
 		<meta charset="utf-8" />
-		<title>Interactive WebGL Rubik's Cube</title>
+		<title>Perxist</title>
 		<link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
-		<meta name="description" content="Play with a Rubik's Cube Online - Made by Kangqiao Lei">
+		<meta name="description" content="A Game of Persistance Advancement Existence - Made by Kangqiao Lei">
 		<link rel="shortcut icon" type="image/png" href="media/favicon.png"/>
 		<link rel="icon" type="image/x-icon" href="/favicon.ico">
 
@@ -42,37 +30,15 @@
 			Oops ... your browser doesn't support the HTML5 canvas element
 			</canvas>	-->
 		</div>	
-		
-			<input type="number" id="ScrambleNumber" value="2" min="0">
-			<button id="scramble">Scramble!</button>
-			<!-- <button id="scramble" onclick="ScrambleCube()">Scramble!</button> 
-				Made Event Listener, could use submit button with PHP-->
-			
-			<script type="text/javascript" src="./js/Libraries/FileSaver.min.js"></script>
+
 			<script type="text/javascript" src="./js/Libraries/three.min.js"></script>
 			<script type="text/javascript" src="./js/Libraries/stats.min.js"></script>
 			<script type="text/javascript" src="./js/Libraries/Detector.js"></script>
 			<script type="text/javascript" src="./js/Libraries/OrbitControls.js"></script>
-			<script type="text/javascript" src="./js/Libraries/SceneUtils.js"></script>
-			<script type="text/javascript" src="./js/cubes.js"></script>
-			<script type="text/javascript" src="./js/rotate.js"></script>
 			<script type="text/javascript" src="./js/EventListeners.js"></script>
-			<script>console.log("Reached Game");</script>
 			<script type="text/javascript" src='./js/game.js'></script>
 		<div id="debug"></div>
-		<div>
-			Filename: <input id="file" type="text" name="export" value="Cube.txt">
-			<button id="export">Export Cube</button>
-		</div>
-		<div>
-		Import JSON (copy&paste here): <input id="SaveJSON" type="text" name="import" value="">
-		<button id="import">Import Cube</button>
-		</div>
-	<script>console.log("End Body");</script>
-	</body>
-	
-	<script>console.log("Past Body");</script>
-	
+
 	<script type="text/javascript">
 		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -85,3 +51,4 @@
 	</script>
 
 </html>
+
