@@ -1,10 +1,10 @@
 // Global Object Variables
-var renderer, scene, 
-	camera,	pointLight, spotLight, highLight;
+var renderer, scene, camera,
+	pointLight, spotLight, highLight;
 
 var stats;
 var clock = new THREE.Clock(), delta = clock.getDelta();
-var cubes = [], objects = [];
+var objects = [];
 
 // Field variables to set Scene Dimensions
 var canvasWidth = window.innerWidth;
@@ -17,25 +17,26 @@ var VIEW_ANGLE = 50,
   NEAR = 0.1,
   FAR = 1000; // To redo: dynamically change based on zoom
 
- // Defs
-var PI_2 = Math.PI / 2;
+// Defs
+var PI_2 = Math.PI / 2,
+	rad45 = Math.PI / 4,
+    rad90 = Math.PI / 2,
+    rad180 = Math.PI,
+    rad360 = Math.PI * 2,
+    deg2rad = Math.PI / 180,
+    rad2deg = 180 / Math.PI,
 var ANIMATE_INCREMENT = 0.01;
 
 window.onload = function setup()
 {
-	console.log("Reach Setup");
 	//Scene initialisation code:
 	init();
-	console.log("Passed Init");
 	// Add elements to DOM
 	addToDOM();
-	console.log("Passed DOM");
 	// Set up all 3D Objects in scene
 	createScene();
-	console.log("Passed Scene");
 	// Render/Drawing/Animate function
 	tick();
-	console.log("Passed Tick");
 }
 
 function init()
@@ -66,14 +67,12 @@ function addToDOM()
 	var container = document.getElementById("gameCanvas");
 	// Attach the render-supplied DOM element (the gameCanvas)
 	container.appendChild(renderer.domElement);
-	console.log("Got Canvas");
 	// Debugger Stats
 	stats = new Stats();
 	stats.domElement.style.position = 'absolute';
 	stats.domElement.style.top = '0px';
 	stats.domElement.style.left = '0px'; 
 	container.appendChild(stats.domElement);
-	console.log("Got Stats");
 }
 
 function detachAndReset()
@@ -116,30 +115,25 @@ function createScene()
 {
 	// Create the scene
 	scene = new THREE.Scene();
-	console.log("Scene!");
 	// Add Lights to scene
 	createLights();
-	console.log("Lights!");
+	// Add Fog
+	scene.fog = new THREE.FogExp2( 0x3B4924, 0.0025 );
 	// Add Camera to scene
 	scene.add(camera);
-	console.log("Camera!");
 	
-	// Create cubes
-	cubes = new createCubes();
-	console.log("Cubes!");
+	// Create Objects
+	//player = new createPlayer():
+
 	// Start the renderer
 	renderer.setSize(canvasWidth, canvasHeight);
-	console.log("Render!");
+
 	// Create Camera Pivot 
 	pivot = new THREE.Object3D();
 	scene.add(pivot); // Default adds to Origin
-	console.log("Pivot!");
-	// Add Child Cubes to scene 
-	for (var i = 0, len = cubes.length; i < len; ++i)
-	{
-		scene.add(cubes[i]);
-	}
-	console.log("Populated Cubes!");
+	// Add Objects to scene 
+	//scene.add(cubes[i]);
+
 }
 
 var lights;
@@ -176,65 +170,4 @@ function errorMessage()
 {
 	alert("Oh no! It seems WebGL is either not supported or your GPU is blacklisted! Switching to Canvas Renderer... Will get slow!");
 	return new THREE.CanvasRenderer();
-}
-
-function checkSolved()
-{
-	var lowx = [], highx = [],
-	lowy = [], highy = [],
-	lowz = [], highz = [];
-	var solved = true;
-	
-	for (var i = 0, len = cubes.length; i < len; ++i)
-    {
-		var position = getObjWorldPos(cubes[i]);
-		console.log(position);
-		console.log("X:" + (Math.abs(position.x) + cEdge) + "Y:" + (Math.abs(position.y) + cEdge) +"Z:" + (Math.abs(position.y) + cEdge));
-		if ((Math.abs(position.x) + cEdge) >= coff)
-			(position.x > 0) ? highx.push(cubes[i].material.materials) : lowx.push(cubes[i].material.materials);
-		if ((Math.abs(position.y) + cEdge) >= coff)
-			(position.y > 0) ? highy.push(cubes[i].material.materials) : lowy.push(cubes[i].material.materials);
-		if ((Math.abs(position.z) + cEdge) >= coff)
-			(position.z > 0) ? highz.push(cubes[i].material.materials) : lowz.push(cubes[i].material.materials);
-	}
-	var sides = [highx, lowx, highy, lowy, highz, lowz];
-	for (var i = 0, len = sides.length; i < len; ++i)//(cMA in CAtoCheck) 
-	{
-		solved = solved && checkCubes(sides[i], i);
-		if (!solved)
-			return solved;
-	}
-	
-	return solved;
-}
-
-function checkCubes(cubeArray, access)
-{
-	var sideSolved = true;
-	var refMat = cubeArray[access][access];
-	for (var i = 0, len = cubeArray.length; i < len; ++i)//(matArray in cubeArray) 
-	{
-		if (cubeArray[i][access] == redMaterial)
-			console.log("Red");
-		if (cubeArray[i][access] == greenMaterial)
-			console.log("Green");
-		if (cubeArray[i][access] == blueMaterial)
-			console.log("Blue");
-		if (cubeArray[i][access] == yellowMaterial)
-			console.log("Yellow");
-		if (cubeArray[i][access] == orangeMaterial)
-			console.log("Orange");
-		if (cubeArray[i][access] == whiteMaterial)
-			console.log("White");
-			
-		sideSolved = sideSolved && (cubeArray[i][access] == refMat);
-		if (!sideSolved)
-			return sideSolved;
-	}
-	return sideSolved;
-}
-
-function reportSolved()
-{
-	document.getElementById("debug").textContent = checkSolved() ? "Solved!" : "Unsolved";
 }

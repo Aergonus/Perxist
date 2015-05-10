@@ -7,13 +7,13 @@ function addEventListeners()
 	window.document.addEventListener("keydown", onDocumentKeyDown, false);
 
 	//Scrambler
-	document.getElementById("scramble").addEventListener("click", ScrambleCube);
+	//document.getElementById("scramble").addEventListener("click", ScrambleCube);
 	
 	//Save File Exporter
-	document.getElementById("export").addEventListener("click", saveCubes);
+	//document.getElementById("export").addEventListener("click", saveCubes);
 	
 	//Save File Importer
-	document.getElementById("import").addEventListener("click", loadCubes);
+	//document.getElementById("import").addEventListener("click", loadCubes);
 }
 
 function onWindowResize(event)
@@ -24,6 +24,7 @@ function onWindowResize(event)
 /*	if(min < canvas.width || min < canvas.height)
 		gl.viewport(0,canvas.height-min, min, min); 
 		//resize viewport where min is minimum of innerheight/width*/
+	// controls.handleResize();
 	tick();
 }
 
