@@ -194,7 +194,7 @@ function createLights()
 	//spotlight.target.position.set(0,0,0);
 
 	var spotlight = new THREE.SpotLight(0xFFFFFF, 0.99225);
-	spotlight.position.set(-10,-10,-10);
+	spotlight.position.set(-10,10,-10);
 	spotlight.angle = 60 * Math.PI / 180;
 	spotlight.exponent = 100;
 	spotlight.target.position.set(0,0,0);
