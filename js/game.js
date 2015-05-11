@@ -161,7 +161,7 @@ function createScene()
 	var texture = THREE.ImageUtils.loadTexture('media/ground.png');
 	texture.wrapS = THREE.RepeatWrapping;
 	texture.wrapT = THREE.RepeatWrapping;
-	texture.repeat.set( 100, 100 );
+	texture.repeat.set( 1, 1 );
 	for ( var i = 0, l = geometry.vertices.length; i < l; i ++ ) {
 
 		var vertex = geometry.vertices[ i ];
@@ -180,7 +180,7 @@ function createScene()
 
 	}
 	
-	material = new THREE.MeshLambertMaterial({map: texture, fog: true});
+	material = new THREE.MeshLambertMaterial({map: texture, fog: true, side: THREE.DoubleSide });
 	//material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
 
 	plane = new THREE.Mesh( geometry, material );
