@@ -193,19 +193,19 @@ function createPlayer() {
 	this.caster = new THREE.Raycaster();
 	
 	collision: function () {
-    'use strict';
-    var collisions, i,
-      // Maximum distance from the origin before we consider collision
-      distance = 1.5,
+		'use strict';
+		var collisions, i,
+		  // Maximum distance from the origin before we consider collision
+		  distance = 1.5,
 
-    for (i = 0; i < this.rays.length; i += 1) {
-      this.caster.set(this.mesh.position, this.rays[i]);
-      collisions = this.caster.intersectObjects(objects);
-      if (collisions.length > 0 && collisions[0].distance <= distance) {
-		lose();
-      }
-    }
-  },
+		for (i = 0; i < this.rays.length; i += 1) {
+		  this.caster.set(this.mesh.position, this.rays[i]);
+		  collisions = this.caster.intersectObjects(objects);
+		  if (collisions.length > 0 && collisions[0].distance <= distance) {
+			lose();
+		  }
+		}
+	}
 }
 
 var lights;
