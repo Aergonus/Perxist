@@ -233,8 +233,9 @@ var rays = [
       new THREE.Vector3(-1, 0, 0).normalize,
       new THREE.Vector3(-1, 0, 1).normalize
     ];
-var maxY = 0;
-var updateZ = false, updateX = false;
+var maxVY = 0, maxY = 0;
+var updateZ = false, updateX = false, updateY = false;
+var goombajumps = 0;
 function updateWorld(delta)
 {
 	raycaster.ray.origin.copy( cubie.position );
@@ -254,30 +255,30 @@ function updateWorld(delta)
 	velocity.z -= velocity.z * 10.0 * delta;// + 9.8;
 	console.log(maxY);
 	velocity.y -= 7.8 * 10.0 * delta; // 100.0 = mass
-	maxY = (maxY > velocity.y) ? maxY : velocity.y;
+	maxVY = (maxVY > velocity.y) ? maxVY : velocity.y;
 	
 	velocity.y = (velocity.y > 90) ? 90 : velocity.y;
 	if ( moveForward ) velocity.z -= 100.0 * delta;
 	if ( moveBackward ) velocity.z += 100.0 * delta;
-
+	
 	if ( moveLeft ) velocity.x -= 400.0 * delta;
 	if ( moveRight ) velocity.x += 400.0 * delta;
 
-	if ( isOnObject === true ) {
+	if ( isOnObject === true && !updateY) {
+		updateY = true;
+		goombajumps++;
 		velocity.y = Math.max( 0, velocity.y );
-
 		canJump = true;
+		updateY = false;
 	}
 
 	cubie.translateX( velocity.x * delta );
 	cubie.translateY( velocity.y * delta );
 	cubie.translateZ( velocity.z * delta );
-
+	maxY = (maxVY > cubie.position.y) ? maxVY : cubie.position.y;
 	if ( cubie.position.y < 1.5 ) {
-
 		velocity.y = 0;
 		cubie.position.y = 1.5;
-
 		canJump = true;
 	}
 	
@@ -358,6 +359,7 @@ function pointerLock()
 				blocker.style.display = 'box';
 
 				instructions.style.display = '';
+				instructions.InnerHTML = "You've reached " + maxY " height of drama by stomping on " goombajumps " political heads.";
 
 			}
 
