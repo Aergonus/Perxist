@@ -359,7 +359,7 @@ function pointerLock()
 				blocker.style.display = 'box';
 
 				instructions.style.display = '';
-				instructions.InnerHTML = "You've reached " + maxY " height of drama by stomping on " goombajumps " political heads.";
+				instructions.innerHTML = 'You\'ve reached'  + maxY + ' height of drama by stomping on ' + goombajumps + ' political heads.';
 
 			}
 
