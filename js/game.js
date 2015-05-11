@@ -221,7 +221,7 @@ function createLights()
 }
 
 var checkDownRay = new THREE.Vector3( 0, - 1, 0 );
-var raycaster = new THREE.Raycaster( new THREE.Vector3(), checkDownRay, 1.501, 1.8 );
+var raycaster = new THREE.Raycaster( new THREE.Vector3(), checkDownRay.clone(), 1.501, 1.8 );
 
 var rays = [
       new THREE.Vector3(0, 0, 1).normalize,
@@ -243,8 +243,8 @@ function updateWorld(delta)
 	var isOnObject = intersections.length > 0;
 	
 	for (i = 0; i < rays.length; i ++) {
-		raycaster.ray.direction = rays[i];
-		var collisions = raycaster.intersectObjects( objects );
+		var raycheck = new THREE.Raycaster( cubie.position.copy() , rays[i], 1.501, 1.8 );
+		var collisions = raycheck.intersectObjects( objects );
 		if (collisions.length > 0) {
 			console.log("Lost");
 			lose();
