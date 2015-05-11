@@ -9,7 +9,7 @@ function createCubes(numCubes)
 {
 	for(var i = cubes.length; i < numCubes; ++i)
 	{
-		var cubeGeometry = new THREE.BoxGeometry(cDim * Math.random(), cDim * Math.random(), cDim * Math.random(), cEdge * Math.random(), cEdge* Math.random(), cEdge* Math.random());
+		var cubeGeometry = new THREE.BoxGeometry(cDim * Math.random(), cDim * Math.random());
 		var cubeMaterial = setCubeMaterial();
 		var cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial[i]);
 		cubeMesh.position.set(worldEdge * Math.random(), cDim * 2 * Math.random(), worldEdge * Math.random());

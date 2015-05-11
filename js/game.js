@@ -113,7 +113,7 @@ function tick()
 	delta = clock.getDelta()
 	//cameraControls.update(delta);
 	stats.update();
-	//updateWorld(delta);
+	updateWorld(delta);
 	camera.position.set(cubie.position.x, cubie.position.y + 10, cubie.position.z + 50);
 	camera.lookAt(cubie.position);
 	//plControls.getObject().position.copy(cubie.position);
