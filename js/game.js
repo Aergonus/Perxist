@@ -223,7 +223,7 @@ var updateZ = false, updateX = false;
 function updateWorld(delta)
 {
 	raycaster.ray.origin.copy( cubie.position );
-
+	
 	var intersections = raycaster.intersectObjects( objects );
 	var isOnObject = intersections.length > 0;
 
@@ -254,6 +254,11 @@ function updateWorld(delta)
 		cubie.position.y = 1.5;
 
 		canJump = true;
+	}
+	
+	if ( Math.abs(cubie.position.x) < (10-1.5) ) {
+		velocity.x = 0;
+		cubie.position.x = (cubie.position.x > 0) ? (10-1.5) : -(10-1.5);
 	}
 	if ((plane.position.z - cubie.position.z) > 600 && !updateZ) {
 		updateZ = true;
