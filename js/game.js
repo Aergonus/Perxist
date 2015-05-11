@@ -180,7 +180,7 @@ function createScene()
 
 	}
 	
-	material = new THREE.MeshBasicMaterial({map: texture, transparent: true});
+	material = new THREE.MeshBasicMaterial({map: texture});
 	//material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
 
 	plane = new THREE.Mesh( geometry, material );
