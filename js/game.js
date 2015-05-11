@@ -265,11 +265,11 @@ function updateWorld(delta)
 	if ((ground.position.z - cubie.position.z) > 150 && !updateZ) {
 		updateZ = true;
 		cubie.position.z = 150 + cubie.position.z;
-		for (objcheck in scene.children) {
-			if (objcheck.name == "Obstacle") {
-				objcheck.position.z = 150 + objcheck.position.z;
-				if (objcheck.position.z > 50)
-					scene.remove(scene.getObjectbyId(object.id));
+		for ( var i = 0, l = scene.children.length; i < l; ++i ) {
+			if (scene.children[i].name == "Obstacle") {
+				scene.children[i].position.z = - 150 + scene.children[i].position.z;
+				if (scene.children[i].position.z > 50)
+					scene.remove(scene.children[i]);
 			}
 		}
 		cubes = new createCubes(5);
