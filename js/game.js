@@ -228,12 +228,12 @@ function updateWorld(delta)
 	var isOnObject = intersections.length > 0;
 
 	velocity.x -= velocity.x * 10.0 * delta;
-	velocity.z -= velocity.z * 10.0 * delta;
+	velocity.z -= velocity.z * 10.0 * delta + 5;
 
 	velocity.y -= 7.8 * 10.0 * delta; // 100.0 = mass
 
 	if ( moveForward ) velocity.z -= 400.0 * delta;
-	if ( moveBackward ) velocity.z += 400.0 * delta;
+	if ( moveBackward ) velocity.z += 4.0 * delta;
 
 	if ( moveLeft ) velocity.x -= 400.0 * delta;
 	if ( moveRight ) velocity.x += 400.0 * delta;
@@ -257,12 +257,12 @@ function updateWorld(delta)
 	}
 	
 	if ( Math.abs(cubie.position.x) > (10-1.5) ) {
-		velocity.x = 0;
+		velocity.x *= -0.8;
 		cubie.position.x = (cubie.position.x > 0) ? (10-1.5) : -(10-1.5);
 	}
 	if ((ground.position.z - cubie.position.z) > 600 && !updateZ) {
 		updateZ = true;
-		cubie.position.z = 1300 + cubie.position.z;
+		cubie.position.z = 600 + cubie.position.z;
 		updateZ = false;
 	}
 	if ((cubie.position.x) > 600 && !updateX) {

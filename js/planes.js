@@ -7,7 +7,7 @@ function createPlanes()
 	texture.wrapS = THREE.RepeatWrapping;
 	texture.wrapT = THREE.RepeatWrapping;
 	texture.repeat.set( 1, 64 );
-	material = new THREE.MeshLambertMaterial({color: 0xF7FC12, map: texture, fog: true});
+	material = new THREE.MeshLambertMaterial({color: 0xC0B352, map: texture, fog: true});
 	//material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
 
 	ground = new THREE.Mesh( geometry, material );
