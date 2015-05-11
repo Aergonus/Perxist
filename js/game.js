@@ -210,7 +210,8 @@ function createLights()
 	highlight.exponent = 100;
 	highlight.target.position.set(0,0,0);
 	lights.add(pointlight);
-	lights.add(spotlight);
+	lights.add(spotlightL);
+	lights.add(spotlightR);
 	lights.add(highlight);
 	scene.add(lights);
 
