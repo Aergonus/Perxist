@@ -146,7 +146,7 @@ function createScene()
 	player = new createPlayer();
 	
 	// Create Cubes
-	cubes = new createCubes();
+	cubes = new createCubes(numObs);
 	for ( var i = 0, l = cubes.length; i < l; ++i ) {
 		objects.push( cubes[i] );
 		scene.add( cubes[i] );
@@ -245,7 +245,6 @@ function updateWorld(delta)
 	raycaster.ray.origin.copy( cubie.position );
 
 	var intersections = raycaster.intersectObjects( objects );
-	console.log(intersections);
 	var isOnObject = intersections.length > 0;
 
 	velocity.x -= velocity.x * 10.0 * delta;
@@ -263,7 +262,6 @@ function updateWorld(delta)
 		velocity.y = Math.max( 0, velocity.y );
 
 		canJump = true;
-		console.log("OnObj");
 	}
 
 	cubie.translateX( velocity.x * delta );
@@ -276,7 +274,6 @@ function updateWorld(delta)
 		cubie.position.y = 1.5;
 
 		canJump = true;
-		console.log("Pos Low");
 	}
 	if ((plane.position.z - cubie.position.z) > 600 && !updateZ) {
 		updateZ = true;
