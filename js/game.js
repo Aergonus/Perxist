@@ -272,7 +272,7 @@ function updateWorld(delta)
 					scene.remove(scene.getObjectbyId(object.id));
 			}
 		}
-		cubes = new createCubes(numObs);
+		cubes = new createCubes(5);
 		for ( var i = 0, l = cubes.length; i < l; ++i ) {
 			objects.push( cubes[i] );
 			scene.add( cubes[i] );
