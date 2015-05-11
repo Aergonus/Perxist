@@ -250,6 +250,7 @@ function updateWorld(delta)
 			lose();
 		} else {
 		console.log(collisions);
+		}
 	}
 	velocity.x -= velocity.x * 10.0 * delta;
 	velocity.z -= velocity.z * 10.0 * delta + 9.8;
