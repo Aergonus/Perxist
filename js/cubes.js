@@ -1,7 +1,7 @@
 // Cube Array
 var cubes = []; // General array [] 
 // Size of cubes
-var cDim = 40, cEdge = 0.1*cDim;
+var cDim = 30, cEdge = 30;
 var coff = cDim + cEdge;
 var worldEdge = 500;
 
@@ -9,10 +9,10 @@ function createCubes(numCubes)
 {
 	for(var i = cubes.length; i < numCubes; ++i)
 	{
-		var cubeGeometry = new THREE.BoxGeometry(cDim * Math.random(), cDim * Math.random(), cDim * Math.random());
+		var cubeGeometry = new THREE.BoxGeometry(cDim * Math.random() + cEdge, cDim * Math.random() + cEdge, cDim * Math.random() + cEdge);
 		var cubeMaterial = setCubeMaterial();
 		var cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial[i]);
-		cubeMesh.position.set(worldEdge * Math.random(), cDim * 2 * Math.random(), - worldEdge * Math.random() + 100);
+		cubeMesh.position.set(- worldEdge * Math.random() +300, cDim * 2 * Math.random(), - worldEdge * Math.random() + 100);
 		cubes.push(cubeMesh);
 	}
 	return cubes;
