@@ -264,12 +264,12 @@ function updateWorld(delta)
 	}
 	if ((ground.position.z - cubie.position.z) > 350 && !updateZ) {
 		updateZ = true;
-		cubie.position.z = 350 + cubie.position.z;
+		cubie.position.z = -350 + cubie.position.z;
 		for ( var i = 0; scene.children[i] !== undefined; ++i ) {
 			console.log(scene.children);
 			console.log(scene.children[i]);
 			if (scene.children[i].name !== undefined && scene.children[i].name == "Obstacle") {
-				scene.children[i].position.z = 350 + scene.children[i].position.z;
+				scene.children[i].position.z = -350 + scene.children[i].position.z;
 				if (scene.children[i].position.z > cubie.position.z) {
 					scene.remove(scene.children[i]);
 					i--;
