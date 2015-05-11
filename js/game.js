@@ -311,7 +311,6 @@ function updateWorld(delta)
 	if ((cubie.position.x) > 600 && !updateX) {
 		updateX = true;
 		cubie.position.x = cubie.position.x - 600;
-		planes.
 		updateX = false;
 	}
 	if ((- cubie.position.x) > 600 && !updateX) {
