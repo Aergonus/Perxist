@@ -248,15 +248,15 @@ function updateWorld(delta)
 		if (collisions.length > 0) {
 			alert("Lost");
 			lose();
-		} else {
-		console.log(collisions);
 		}
 	}
 	velocity.x -= velocity.x * 10.0 * delta;
 	velocity.z -= velocity.z * 10.0 * delta;// + 9.8;
-
+	console.log(maxY);
 	velocity.y -= 7.8 * 10.0 * delta; // 100.0 = mass
-
+	maxY = (maxY > velocity.y) ? maxY : velocity.y;
+	
+	velocity.y = (velocity.y > 5) ? 5 : velocity.y;
 	if ( moveForward ) velocity.z -= 100.0 * delta;
 	if ( moveBackward ) velocity.z += 100.0 * delta;
 
