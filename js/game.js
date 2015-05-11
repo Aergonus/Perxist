@@ -219,7 +219,7 @@ function createLights()
 
 }
 
-var raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 1.5, 5 );
+var raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 1.6, 5 );
 var maxY = 0;
 var updateZ = false, updateX = false;
 function updateWorld(delta)
