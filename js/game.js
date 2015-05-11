@@ -246,9 +246,9 @@ function updateWorld(delta)
 		var raycheck = new THREE.Raycaster( cubie.position, rays[i], 1.501, 1.8 );
 		var collisions = raycheck.intersectObjects( objects );
 		if (collisions.length > 0) {
-			console.log("Lost");
+			alert("Lost");
 			lose();
-		}
+		} else {
 	}
 	velocity.x -= velocity.x * 10.0 * delta;
 	velocity.z -= velocity.z * 10.0 * delta + 9.8;
@@ -299,7 +299,6 @@ function updateWorld(delta)
 		}
 		while (objects[0].name != "Obstacle" || objects[0].position.z > cubie.position.z) {
 			objects.shift();
-			console.log("Bye bye");
 		}
 		cubes = new createCubes(15);
 		for ( var i = 0, l = cubes.length; i < l; ++i ) {
