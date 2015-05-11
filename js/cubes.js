@@ -70,6 +70,7 @@ function setCubeMaterial()
 		case 8:
 			curTexture = texture9; break;
 	}
+	console.log(curTexture);
 	
 	for (var i = 0; i < 6; ++i)
 	{	
