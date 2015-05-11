@@ -131,6 +131,7 @@ function tick()
 
 function createScene()
 {
+	var numObs = 
 	// Create the scene
 	scene = new THREE.Scene();
 	// Add Lights to scene
@@ -145,7 +146,9 @@ function createScene()
 	player = new createPlayer();
 	
 	// Create Cubes
-	//cubes = new createCubes();
+	cubes = new createCubes();
+	objects.push( cubes );
+	scene.add( cubes );
 	
 	// Start the renderer
 	renderer.setSize(canvasWidth, canvasHeight);
@@ -184,7 +187,7 @@ function createScene()
 	//material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
 
 	plane = new THREE.Mesh( geometry, material );
-	objects.push(plane);
+	objects.push( plane );
 	scene.add( plane );
 
 }
@@ -273,19 +276,19 @@ function updateWorld(delta)
 		canJump = true;
 		console.log("Pos Low");
 	}
-	if ((plane.position.z - cubie.position.z) > 400 && !updateZ) {
+	if ((plane.position.z - cubie.position.z) > 600 && !updateZ) {
 		updateZ = true;
-		cubie.position.z = 400 + cubie.position.z;
+		cubie.position.z = 1300 + cubie.position.z;
 		updateZ = false;
 	}
-	if ((cubie.position.x) > 400 && !updateX) {
+	if ((cubie.position.x) > 600 && !updateX) {
 		updateX = true;
-		cubie.position.x = cubie.position.x - 400;
+		cubie.position.x = cubie.position.x - 600;
 		updateX = false;
 	}
-	if ((- cubie.position.x) > 400 && !updateX) {
+	if ((- cubie.position.x) > 600 && !updateX) {
 		updateX = true;
-		cubie.position.x = 400 + cubie.position.x;
+		cubie.position.x = 600 + cubie.position.x;
 		updateX = false;
 	}
 
