@@ -307,6 +307,7 @@ function updateWorld(delta)
 		}
 		while (objects[0].name != "Obstacle" || objects[0].position.z > cubie.position.z) {
 			objects.shift();
+			console.log("Bye bye");
 		}
 		cubes = new createCubes(15);
 		for ( var i = 0, l = cubes.length; i < l; ++i ) {
