@@ -172,11 +172,40 @@ function createScene()
 
 var cubie;
 function createPlayer() {
-	cubiegeometry = new THREE.BoxGeometry( 3, 3, 3 );
-	cubiematerial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: false, wireframeLinewidth: 20 } );
-	cubie = new THREE.Mesh( cubiegeometry, cubiematerial );
-	cubie.position.set(0,1.5,0);
-	scene.add( cubie );
+	
+	this.cubiegeometry = new THREE.BoxGeometry( 3, 3, 3 );
+	this.cubiematerial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: false, wireframeLinewidth: 20 } );
+	this.cubie = new THREE.Mesh( this.cubiegeometry, this.cubiematerial );
+	this.cubie.position.set(0,1.5,0);
+	scene.add( this.cubie );
+	
+	this.rays = [
+      new THREE.Vector3(0, 0, 1),
+      new THREE.Vector3(1, 0, 1),
+      new THREE.Vector3(1, 0, 0),
+      new THREE.Vector3(1, 0, -1),
+      new THREE.Vector3(0, 0, -1),
+      new THREE.Vector3(-1, 0, -1),
+      new THREE.Vector3(-1, 0, 0),
+      new THREE.Vector3(-1, 0, 1)
+    ];
+	
+	this.caster = new THREE.Raycaster();
+	
+	collision: function () {
+    'use strict';
+    var collisions, i,
+      // Maximum distance from the origin before we consider collision
+      distance = 1.5,
+
+    for (i = 0; i < this.rays.length; i += 1) {
+      this.caster.set(this.mesh.position, this.rays[i]);
+      collisions = this.caster.intersectObjects(objects);
+      if (collisions.length > 0 && collisions[0].distance <= distance) {
+		lose();
+      }
+    }
+  },
 }
 
 var lights;
@@ -219,7 +248,7 @@ function createLights()
 
 }
 
-var raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 1.6, 5 );
+var raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 1.501, 1.8 );
 var maxY = 0;
 var updateZ = false, updateX = false;
 function updateWorld(delta)
@@ -275,6 +304,9 @@ function updateWorld(delta)
 					i--;
 					}
 			}
+		}
+		while (objects[0].name != "Obstacle" || objects[0].position.z > cubie.position.z) {
+			objects.shift();
 		}
 		cubes = new createCubes(15);
 		for ( var i = 0, l = cubes.length; i < l; ++i ) {
