@@ -265,7 +265,7 @@ function updateWorld(delta)
 	if ((ground.position.z - cubie.position.z) > 350 && !updateZ) {
 		updateZ = true;
 		cubie.position.z = 350 + cubie.position.z;
-		for ( var i = 0, l = scene.children.length; i < l; ++i ) {\
+		for ( var i = 0, l = scene.children.length; i < l; ++i ) {
 			console.log(scene.children);
 			console.log(scene.children[i]);
 			if (scene.children[i].name !== undefined && scene.children[i].name == "Obstacle") {
