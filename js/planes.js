@@ -6,23 +6,23 @@ function createPlanes()
 	var texture = THREE.ImageUtils.loadTexture('media/ground.png');
 	texture.wrapS = THREE.RepeatWrapping;
 	texture.wrapT = THREE.RepeatWrapping;
-	texture.repeat.set( 4, 64 );
+	texture.repeat.set( 1, 64 );
 	material = new THREE.MeshLambertMaterial({map: texture, fog: true});
 	//material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
 
 	plane = new THREE.Mesh( geometry, material );
 	planeArray.push(plane);
 	
-	geometry = new THREE.PlaneGeometry( 200, 2000, 10, 100 );
-	geometry.applyMatrix( new THREE.Matrix4().makeRotationX( 0 ) ); // Makes plane "horizontal" instead of "vertical"
+	geometry = new THREE.PlaneGeometry( 200, 200, 10, 10 );
+	geometry.applyMatrix( new THREE.Matrix4().makeRotationY( Math.PI / 2 ) ); // Makes plane "horizontal" instead of "vertical"
 	var texture = THREE.ImageUtils.loadTexture('media/ground.png');
 	texture.wrapS = THREE.RepeatWrapping;
 	texture.wrapT = THREE.RepeatWrapping;
-	texture.repeat.set( 8, 64 );
+	texture.repeat.set( 8, 8 );
 	material = new THREE.MeshLambertMaterial({map: texture, fog: true});
 
 	plane = new THREE.Mesh( geometry, material );
-	plane.position.set(200, 0, 0);
+	plane.position.set(20, 200, 0);
 	planeArray.push(plane);
 	
 	return planeArray;
