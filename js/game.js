@@ -237,7 +237,8 @@ var maxY = 0;
 var updateZ = false, updateX = false;
 function updateWorld(delta)
 {
-	raycaster.ray.set( cubie.position , checkDownRay );
+	raycaster.ray.origin.copy( cubie.position );
+	raycaster.ray.direction = checkDownRay;
 	var intersections = raycaster.intersectObjects( objects );
 	var isOnObject = intersections.length > 0;
 	
