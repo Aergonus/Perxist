@@ -7,16 +7,17 @@ var worldEdge = 1000;
 
 function createCubes(numCubes)
 {
+	var newCubes = [];
 	for(var i = cubes.length; i < numCubes; ++i)
 	{
 		var cubeGeometry = new THREE.BoxGeometry(cDim * Math.random() + cEdge, cDim * Math.random() + cEdge, cDim * Math.random() + cEdge);
 		var cubeMaterial = setCubeMaterial();
 		var cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial[i]);
-		cubeMesh.position.set(- 16 * Math.random() + 8, cDim * 4 * Math.random(), - 700 * Math.random() - 25 );
+		cubeMesh.position.set(- 16 * Math.random() + 8, cDim * 4 * Math.random(), - 700 * Matcubesh.random() - 25 );
 		cubeMesh.name = "Obstacle";
-		cubes.push(cubeMesh);
+		newCubes.push(cubeMesh);
 	}
-	return cubes;
+	return newCubes;
 }
 
 var redMaterial = new THREE.MeshPhongMaterial({ color: 0xFF2F2F, shininess: 0.25  });
