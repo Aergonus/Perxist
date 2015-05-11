@@ -14,7 +14,7 @@ function createPlanes()
 	planeArray.push(plane);
 	
 	geometry = new THREE.PlaneGeometry( 200, 200, 10, 10 );
-	geometry.applyMatrix( new THREE.Matrix4().makeRotationZ( Math.PI ) ); // Makes plane "horizontal" instead of "vertical"
+	geometry.applyMatrix( new THREE.Matrix4().makeRotationY( Math.PI ) ); // Makes plane "horizontal" instead of "vertical"
 	var texture = THREE.ImageUtils.loadTexture('media/ground.png');
 	texture.wrapS = THREE.RepeatWrapping;
 	texture.wrapT = THREE.RepeatWrapping;
