@@ -253,12 +253,12 @@ function updateWorld(delta)
 		}
 	}
 	velocity.x -= velocity.x * 10.0 * delta;
-	velocity.z -= velocity.z * 10.0 * delta + 9.8;
+	velocity.z -= velocity.z * 10.0 * delta;// + 9.8;
 
 	velocity.y -= 7.8 * 10.0 * delta; // 100.0 = mass
 
-	if ( moveForward ) velocity.z -= 20.0 * delta;
-	if ( moveBackward ) velocity.z += 4.0 * delta;
+	if ( moveForward ) velocity.z -= 100.0 * delta;
+	if ( moveBackward ) velocity.z += 100.0 * delta;
 
 	if ( moveLeft ) velocity.x -= 400.0 * delta;
 	if ( moveRight ) velocity.x += 400.0 * delta;
