@@ -36,7 +36,7 @@ var ANIMATE_INCREMENT = 0.01;
 // Get Attributes
 var blocker = document.getElementById( 'blocker' );
 var instructions = document.getElementById( 'instructions' );
-var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
+var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document; // serves purely for focus
 
 var moveForward 	= false, 
 	moveBackward 	= false,
@@ -61,7 +61,7 @@ window.onload = function setup()
 	// Set up all 3D Objects in scene
 	createScene();
 	// PointerLock
-	//pointerLock();
+	pointerLock();
 	// Render/Drawing/Animate function
 	tick();
 }
@@ -81,7 +81,7 @@ function init()
 	//Camera:
 	camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT_RATIO, NEAR, FAR);
 	// Args(FOV, Aspect Ratio, Near clipping plane, Far clipping plane)
-	camera.position.set(20, 20, 20); // Initial position gives a orthographic perspective
+	camera.position.set(0, 10, 10); // Initial position gives a orthographic perspective
 										// Not setting inital camera position screws up shadow rendering
 	//CameraControls:
 	cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -111,11 +111,14 @@ function tick()
 		console.log("Ticking!" + ticks);
 	}
 	delta = clock.getDelta()
-	cameraControls.update(delta);
+	//cameraControls.update(delta);
 	stats.update();
 	updateWorld(delta);
+	camera.position.set(cubie.position.x, cubie.position.y + 10, cubie.position.z + 50);
+	camera.lookAt(cubie.position);
 	//plControls.getObject().position.copy(cubie.position);
-	//plControls.getObject().position.y += 10;
+	//plControls.getObject().position.y -= 20;
+	//plControls.getObject().position.x -= 20;
 	lights.position.copy(camera.position); //plControls.getObject().position
 	
 	endAnimation = false;
@@ -140,7 +143,10 @@ function createScene()
 	
 	// Create Objects
 	player = new createPlayer();
-
+	
+	// Create Cubes
+	cubes = new createCubes();
+	
 	// Start the renderer
 	renderer.setSize(canvasWidth, canvasHeight);
 
@@ -155,7 +161,7 @@ function createScene()
 	var texture = THREE.ImageUtils.loadTexture('media/ground.png');
 	texture.wrapS = THREE.RepeatWrapping;
 	texture.wrapT = THREE.RepeatWrapping;
-	texture.repeat.set( 4, 4 );
+	texture.repeat.set( 400, 400 );
 	for ( var i = 0, l = geometry.vertices.length; i < l; i ++ ) {
 
 		var vertex = geometry.vertices[ i ];
@@ -174,8 +180,8 @@ function createScene()
 
 	}
 	
-	//material = new THREE.MeshBasicMaterial({map: texture, transparent: true});
-	material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
+	material = new THREE.MeshBasicMaterial({map: texture, transparent: true});
+	//material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
 
 	plane = new THREE.Mesh( geometry, material );
 	objects.push(plane);
@@ -183,11 +189,12 @@ function createScene()
 
 }
 
+var cubie;
 function createPlayer() {
 	cubiegeometry = new THREE.BoxGeometry( 3, 3, 3 );
 	cubiematerial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: false, wireframeLinewidth: 20 } );
 	cubie = new THREE.Mesh( cubiegeometry, cubiematerial );
-	cubie.position.set(0,3,0);
+	cubie.position.set(0,1.5,0);
 	scene.add( cubie );
 }
 
@@ -225,44 +232,61 @@ function createLights()
 
 }
 
+var raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 1.5, 5 );
+var maxY = 0;
+var updateZ = false, updateX = false;
 function updateWorld(delta)
 {
-		if ( controlsEnabled ) {
-		raycaster.ray.origin.copy( cubie.position );
+	raycaster.ray.origin.copy( cubie.position );
 
-		var intersections = raycaster.intersectObjects( objects );
+	var intersections = raycaster.intersectObjects( objects );
+	console.log(intersections);
+	var isOnObject = intersections.length > 0;
 
-		var isOnObject = intersections.length > 0;
+	velocity.x -= velocity.x * 10.0 * delta;
+	velocity.z -= velocity.z * 10.0 * delta;
 
-		velocity.x -= velocity.x * 10.0 * delta;
-		velocity.z -= velocity.z * 10.0 * delta;
+	velocity.y -= 7.8 * 10.0 * delta; // 100.0 = mass
 
-		velocity.y -= 9.8 * 10.0 * delta; // 100.0 = mass
+	if ( moveForward ) velocity.z -= 400.0 * delta;
+	if ( moveBackward ) velocity.z += 400.0 * delta;
 
-		if ( moveForward ) velocity.z -= 400.0 * delta;
-		if ( moveBackward ) velocity.z += 400.0 * delta;
+	if ( moveLeft ) velocity.x -= 400.0 * delta;
+	if ( moveRight ) velocity.x += 400.0 * delta;
 
-		if ( moveLeft ) velocity.x -= 400.0 * delta;
-		if ( moveRight ) velocity.x += 400.0 * delta;
+	if ( isOnObject === true ) {
+		velocity.y = Math.max( 0, velocity.y );
 
-		if ( isOnObject === true ) {
-			velocity.y = Math.max( 0, velocity.y );
+		canJump = true;
+		console.log("OnObj");
+	}
 
-			canJump = true;
-		}
+	cubie.translateX( velocity.x * delta );
+	cubie.translateY( velocity.y * delta );
+	cubie.translateZ( velocity.z * delta );
 
-		cubie.translateX( velocity.x * delta );
-		cubie.translateY( velocity.y * delta );
-		cubie.translateZ( velocity.z * delta );
+	if ( cubie.position.y < 1.5 ) {
 
-		if ( cubie.position.y < 0 ) {
+		velocity.y = 0;
+		cubie.position.y = 1.5;
 
-			velocity.y = 0;
-			cubie.position.y = 0;
-
-			canJump = true;
-
-		}
+		canJump = true;
+		console.log("Pos Low");
+	}
+	if ((plane.position.z - cubie.position.z) > 400 && !updateZ) {
+		updateZ = true;
+		cubie.position.z = 400 + cubie.position.z;
+		updateZ = false;
+	}
+	if ((cubie.position.x) > 400 && !updateX) {
+		updateX = true;
+		cubie.position.x = cubie.position.x - 400;
+		updateX = false;
+	}
+	if ((- cubie.position.x) > 400 && !updateX) {
+		updateX = true;
+		cubie.position.x = 400 + cubie.position.x;
+		updateX = false;
 	}
 
 }
@@ -283,8 +307,8 @@ function pointerLock()
 
 			if ( document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element ) {
 
-				plControlsEnabled = true;
-				plControls.enabled = true;
+				//plControlsEnabled = true;
+				//plControls.enabled = true;
 
 				blocker.style.display = 'none';
 

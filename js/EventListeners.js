@@ -56,6 +56,8 @@ var keyMappings =
 function onDocumentKeyDown(event)
 {
 	switch ( event.keyCode ) {
+		case 9 : // tab
+			//changeControl(); break;
 		case 87: // w
 			moveForward = true; break;
 		case 38: // up
@@ -73,7 +75,10 @@ function onDocumentKeyDown(event)
 		case 39: // right
 			panRight = true; break; 
 		case 32: // space
-			if ( canJump === true ) velocity.y += 350;
+			if ( canJump === true ) {
+				velocity.y += 45;
+				console.log("Added velocity");
+			}
 			canJump = false;
 			break;
 	}
