@@ -161,37 +161,11 @@ function createScene()
 	// Add Objects to scene 
 	//scene.add(cubes[i]);
 	
-	geometry = new THREE.PlaneGeometry( 2000, 2000, 100, 100 );
-	geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) ); // Makes plane "horizontal" instead of "vertical"
-	var texture = THREE.ImageUtils.loadTexture('media/ground.png');
-	texture.wrapS = THREE.RepeatWrapping;
-	texture.wrapT = THREE.RepeatWrapping;
-	texture.repeat.set( 64, 64 );
-	for ( var i = 0, l = geometry.vertices.length; i < l; ++i ) {
-
-		var vertex = geometry.vertices[ i ];
-		vertex.x += 0;
-		vertex.y += 0;
-		vertex.z += 0;
-
+	planes = new createPlanes();
+	for ( var i = 0, l = planes.length; i < l; ++i ) {
+		objects.push( planes[i] );
+		scene.add( planes[i] );
 	}
-
-	for ( var i = 0, l = geometry.faces.length; i < l; ++i ) {
-
-		var face = geometry.faces[ i ];
-		face.vertexColors[ 0 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
-		face.vertexColors[ 1 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
-		face.vertexColors[ 2 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
-
-	}
-	
-	material = new THREE.MeshLambertMaterial({map: texture, fog: true, side: THREE.DoubleSide });
-	//material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
-
-	plane = new THREE.Mesh( geometry, material );
-	objects.push( plane );
-	scene.add( plane );
-
 }
 
 var cubie;
