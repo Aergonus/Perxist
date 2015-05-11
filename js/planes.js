@@ -23,7 +23,7 @@ function createPlanes()
 	material = new THREE.MeshLambertMaterial({map: texture, fog: true});
 
 	plane = new THREE.Mesh( geometry, material );
-	plane.position.set(-10, 100, -1000);
+	plane.position.set(-10, 100, -500);
 	planeArray.push(plane);
 
 	geometry = new THREE.PlaneGeometry( 200, 1200, 10, 20 );
@@ -36,7 +36,7 @@ function createPlanes()
 	material = new THREE.MeshLambertMaterial({map: texture, fog: true});
 
 	plane = new THREE.Mesh( geometry, material );
-	plane.position.set(10, 100, -1000);
+	plane.position.set(10, 100, -500);
 	planeArray.push(plane);
 	
 	return planeArray;
