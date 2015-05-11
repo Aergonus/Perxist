@@ -260,9 +260,9 @@ function updateWorld(delta)
 		velocity.x *= -0.8;
 		cubie.position.x = (cubie.position.x > 0) ? (10-1.5) : -(10-1.5);
 	}
-	if ((ground.position.z - cubie.position.z) > 600 && !updateZ) {
+	if ((ground.position.z - cubie.position.z) > 400 && !updateZ) {
 		updateZ = true;
-		cubie.position.z = 600 + cubie.position.z;
+		cubie.position.z = 400 + cubie.position.z;
 		updateZ = false;
 	}
 	if ((cubie.position.x) > 600 && !updateX) {
