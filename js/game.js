@@ -104,6 +104,7 @@ function addToDOM()
 }
 
 var ticks = 0;
+var haveFocus = false;
 function tick()
 {	ticks++;
 	if (ticks < 10)
