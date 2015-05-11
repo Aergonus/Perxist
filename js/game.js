@@ -113,14 +113,14 @@ function tick()
 	delta = clock.getDelta()
 	//cameraControls.update(delta);
 	stats.update();
-	if (focus) {
-	updateWorld(delta);
-	camera.position.set(cubie.position.x, cubie.position.y + 10, cubie.position.z + 50);
-	camera.lookAt(cubie.position);
-	//plControls.getObject().position.copy(cubie.position);
-	//plControls.getObject().position.y -= 20;
-	//plControls.getObject().position.x -= 20;
-	lights.position.copy(camera.position); //plControls.getObject().position
+	if (haveFocus) {
+		updateWorld(delta);
+		camera.position.set(cubie.position.x, cubie.position.y + 10, cubie.position.z + 50);
+		camera.lookAt(cubie.position);
+		//plControls.getObject().position.copy(cubie.position);
+		//plControls.getObject().position.y -= 20;
+		//plControls.getObject().position.x -= 20;
+		lights.position.copy(camera.position); //plControls.getObject().position
 	}
 	endAnimation = false;
 	// Draw THREE.JS scene
@@ -298,12 +298,12 @@ function pointerLock()
 
 				//plControlsEnabled = true;
 				//plControls.enabled = true;
-				focus = true;
+				haveFocus = true;
 
 				blocker.style.display = 'none';
 
 			} else {
-				focus = false;
+				haveFocus = false;
 				plControls.enabled = false;
 
 				blocker.style.display = '-webkit-box';
