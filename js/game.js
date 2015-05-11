@@ -276,7 +276,7 @@ function updateWorld(delta)
 					}
 			}
 		}
-		cubes = new createCubes(5);
+		cubes = new createCubes(15);
 		for ( var i = 0, l = cubes.length; i < l; ++i ) {
 			objects.push( cubes[i] );
 			scene.add( cubes[i] );
