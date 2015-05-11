@@ -244,7 +244,7 @@ function updateWorld(delta)
 	var isOnObject = intersections.length > 0;
 	
 	for (i = 0; i < rays.length; i ++) {
-		var raycheck = new THREE.Raycaster( cubie.position, rays[i], 1.501, 1.8 );
+		var raycheck = new THREE.Raycaster( cubie.position, rays[i], 1.501, 2 );
 		var collisions = raycheck.intersectObjects( objects );
 		if (collisions.length > 0) {
 			alert("Lost");
