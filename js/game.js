@@ -131,7 +131,7 @@ function tick()
 
 function createScene()
 {
-	var numObs = 
+	var numObs = 500;
 	// Create the scene
 	scene = new THREE.Scene();
 	// Add Lights to scene
@@ -147,8 +147,10 @@ function createScene()
 	
 	// Create Cubes
 	cubes = new createCubes();
-	objects.push( cubes );
-	scene.add( cubes );
+	for ( var i = 0, l = cubes.length; i < l; ++i ) {
+		objects.push( cubes[i] );
+		scene.add( cubes[i] );
+	}
 	
 	// Start the renderer
 	renderer.setSize(canvasWidth, canvasHeight);
@@ -165,7 +167,7 @@ function createScene()
 	texture.wrapS = THREE.RepeatWrapping;
 	texture.wrapT = THREE.RepeatWrapping;
 	texture.repeat.set( 64, 64 );
-	for ( var i = 0, l = geometry.vertices.length; i < l; i ++ ) {
+	for ( var i = 0, l = geometry.vertices.length; i < l; ++i ) {
 
 		var vertex = geometry.vertices[ i ];
 		vertex.x += 0;
@@ -174,7 +176,7 @@ function createScene()
 
 	}
 
-	for ( var i = 0, l = geometry.faces.length; i < l; i ++ ) {
+	for ( var i = 0, l = geometry.faces.length; i < l; ++i ) {
 
 		var face = geometry.faces[ i ];
 		face.vertexColors[ 0 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
