@@ -145,7 +145,7 @@ function createScene()
 	player = new createPlayer();
 	
 	// Create Cubes
-	cubes = new createCubes();
+	//cubes = new createCubes();
 	
 	// Start the renderer
 	renderer.setSize(canvasWidth, canvasHeight);
