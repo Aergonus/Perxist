@@ -262,9 +262,21 @@ function updateWorld(delta)
 		velocity.x *= -0.8;
 		cubie.position.x = (cubie.position.x > 0) ? (10-1.5) : -(10-1.5);
 	}
-	if ((ground.position.z - cubie.position.z) > 100 && !updateZ) {
+	if ((ground.position.z - cubie.position.z) > 150 && !updateZ) {
 		updateZ = true;
-		cubie.position.z = 100 + cubie.position.z;
+		cubie.position.z = 150 + cubie.position.z;
+		for (objcheck in scene.children) {
+			if (objcheck.name == "Obstacle") {
+				objcheck.position.z = 150 + objcheck.position.z;
+				if (objcheck.position.z > 50)
+					scene.remove(scene.getObjectbyId(object.id));
+			}
+		}
+		cubes = new createCubes(numObs);
+		for ( var i = 0, l = cubes.length; i < l; ++i ) {
+			objects.push( cubes[i] );
+			scene.add( cubes[i] );
+		}
 		updateZ = false;
 	}
 	if ((cubie.position.x) > 600 && !updateX) {

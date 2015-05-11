@@ -1,7 +1,7 @@
 // Cube Array
 var cubes = []; // General array [] 
 // Size of cubes
-var cDim = 10, cEdge = 30;
+var cDim = 6, cEdge = 4;
 var coff = cDim + cEdge;
 var worldEdge = 1000;
 
@@ -12,7 +12,8 @@ function createCubes(numCubes)
 		var cubeGeometry = new THREE.BoxGeometry(cDim * Math.random() + cEdge, cDim * Math.random() + cEdge, cDim * Math.random() + cEdge);
 		var cubeMaterial = setCubeMaterial();
 		var cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial[i]);
-		cubeMesh.position.set(- worldEdge * Math.random() + 500, cDim * 2 * Math.random(), - worldEdge * Math.random() + 500);
+		cubeMesh.position.set(- 16 * Math.random() + 8, cDim * 4 * Math.random(), - 200 * Math.random() - 25 );
+		cubeMesh.name = "Obstacle";
 		cubes.push(cubeMesh);
 	}
 	return cubes;
