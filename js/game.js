@@ -256,6 +256,7 @@ function updateWorld(delta)
 	velocity.y -= 7.8 * 10.0 * delta; // 100.0 = mass
 	maxY = (maxY > velocity.y) ? maxY : velocity.y;
 	
+	velocity.y = (velocity.y > 90) ? 90 : velocity.y;
 	if ( moveForward ) velocity.z -= 100.0 * delta;
 	if ( moveBackward ) velocity.z += 100.0 * delta;
 
