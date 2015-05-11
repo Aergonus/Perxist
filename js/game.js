@@ -228,7 +228,7 @@ function createLights()
 	lights.add(pointlight);
 	lights.add(spotlight);
 	lights.add(highlight);
-	//scene.add(lights);
+	scene.add(lights);
 
 }
 
