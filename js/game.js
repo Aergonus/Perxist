@@ -113,6 +113,7 @@ function tick()
 	delta = clock.getDelta()
 	//cameraControls.update(delta);
 	stats.update();
+	if (focus) {
 	updateWorld(delta);
 	camera.position.set(cubie.position.x, cubie.position.y + 10, cubie.position.z + 50);
 	camera.lookAt(cubie.position);
@@ -120,7 +121,7 @@ function tick()
 	//plControls.getObject().position.y -= 20;
 	//plControls.getObject().position.x -= 20;
 	lights.position.copy(camera.position); //plControls.getObject().position
-	
+	}
 	endAnimation = false;
 	// Draw THREE.JS scene
 	renderer.render(scene, camera);
@@ -260,9 +261,9 @@ function updateWorld(delta)
 		velocity.x *= -0.8;
 		cubie.position.x = (cubie.position.x > 0) ? (10-1.5) : -(10-1.5);
 	}
-	if ((ground.position.z - cubie.position.z) > 400 && !updateZ) {
+	if ((ground.position.z - cubie.position.z) > 100 && !updateZ) {
 		updateZ = true;
-		cubie.position.z = 400 + cubie.position.z;
+		cubie.position.z = 100 + cubie.position.z;
 		updateZ = false;
 	}
 	if ((cubie.position.x) > 600 && !updateX) {
@@ -297,11 +298,12 @@ function pointerLock()
 
 				//plControlsEnabled = true;
 				//plControls.enabled = true;
+				focus = true;
 
 				blocker.style.display = 'none';
 
 			} else {
-
+				focus = false;
 				plControls.enabled = false;
 
 				blocker.style.display = '-webkit-box';
