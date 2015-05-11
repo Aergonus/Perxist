@@ -173,24 +173,11 @@ function createScene()
 var cubie;
 function createPlayer() {
 	
-	this.cubiegeometry = new THREE.BoxGeometry( 3, 3, 3 );
-	this.cubiematerial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: false, wireframeLinewidth: 20 } );
-	this.cubie = new THREE.Mesh( this.cubiegeometry, this.cubiematerial );
-	this.cubie.position.set(0,1.5,0);
-	scene.add( this.cubie );
-	
-	this.rays = [
-      new THREE.Vector3(0, 0, 1),
-      new THREE.Vector3(1, 0, 1),
-      new THREE.Vector3(1, 0, 0),
-      new THREE.Vector3(1, 0, -1),
-      new THREE.Vector3(0, 0, -1),
-      new THREE.Vector3(-1, 0, -1),
-      new THREE.Vector3(-1, 0, 0),
-      new THREE.Vector3(-1, 0, 1)
-    ];
-	
-	this.caster = new THREE.Raycaster();
+	cubiegeometry = new THREE.BoxGeometry( 3, 3, 3 );
+	cubiematerial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: false, wireframeLinewidth: 20 } );
+	cubie = new THREE.Mesh( cubiegeometry, cubiematerial );
+	cubie.position.set(0,1.5,0);
+	scene.add( cubie );
 }
 
 var lights;
