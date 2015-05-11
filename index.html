@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-		<meta charset="utf-8" />
 		<title>Perxist</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
 		<meta name="description" content="A Game of Persistance Advancement Existence - Made by Kangqiao Lei">
 		<link rel="shortcut icon" type="image/png" href="media/favicon.png"/>
-		<link rel="icon" type="image/x-icon" href="/favicon.ico">
+		<link rel="icon" type="image/x-icon" href="favicon.ico">
 
 <!-- 	Three.js Canvas Init (Detector.js creates canvas automagically)
 		<style>
 			body { margin: 0; }
 			canvas { width: 100%; height: 100% }
-		</style> -->
-
+		</style> 
+-->
 	</head>
 
 	<script type="text/javascript"> 
@@ -28,27 +28,44 @@
 <!-- 	Cube Canvas (Normal WebGL implementation, automatically created by Detector.js)
 			<canvas id="cC" width="512" height="512">
 			Oops ... your browser doesn't support the HTML5 canvas element
-			</canvas>	-->
+			</canvas>
+-->
 		</div>	
 
+		<div id="blocker">
+
+			<div id="instructions">
+				<span style="font-size:40px">Click to play</span>
+				<br />
+				(W, A, S, D = Move, SPACE = Jump, MOUSE = Look around)
+			</div>
+
+		</div>
+		
 			<script type="text/javascript" src="./js/Libraries/three.min.js"></script>
 			<script type="text/javascript" src="./js/Libraries/stats.min.js"></script>
 			<script type="text/javascript" src="./js/Libraries/Detector.js"></script>
+			<script type="text/javascript" src="./js/Libraries/FirstPersonControls.js"></script>
+			
 			<script type="text/javascript" src="./js/Libraries/OrbitControls.js"></script>
+			<script type="text/javascript" src="./js/Libraries/MouseControls.js"></script>
+			<script type="text/javascript" src="./js/Libraries/FlyControls.js"></script>
+			<script type="text/javascript" src="./js/Libraries/PointerLockControls.js"></script>
+			
 			<script type="text/javascript" src="./js/EventListeners.js"></script>
 			<script type="text/javascript" src='./js/game.js'></script>
+		
 		<div id="debug"></div>
-
-	<script type="text/javascript">
-		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-		try {
-		var pageTracker = _gat._getTracker("UA-61748230-1");
-		pageTracker._trackPageview();
-		} catch(err) {}
-	</script>
-
+		
+		<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+			try {
+			var pageTracker = _gat._getTracker("UA-61748230-1");
+			pageTracker._trackPageview();
+			} catch(err) {}
+		</script>
+	</body>
 </html>
-
