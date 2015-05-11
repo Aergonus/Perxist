@@ -1,10 +1,3 @@
-#Instructions {
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
-	width: 70%;
-}
-
 body {
 	background:#000;
 	color: #eee;
@@ -22,7 +15,7 @@ body {
 	position: absolute;
 	top: 0px; width: 100%;
 	padding: 5px;
-	z-index:100;
+	z-index:990;
 }
 
 /* class = "center" */
@@ -45,19 +38,19 @@ body {
 #blocker {
 
 	position: absolute;
-
+	top: 0px;
 	width: 100%;
 	height: 100%;
 
 	background-color: rgba(0,0,0,0.5);
-
+	z-index:100;
 }
 
 #instructions {
 
 	width: 100%;
 	height: 100%;
-
+	top: 0px;
 	display: -webkit-box;
 	display: -moz-box;
 	display: box;
@@ -78,5 +71,7 @@ body {
 	text-align: center;
 
 	cursor: pointer;
+	
+	z-index:100;
 
 }

@@ -5,6 +5,7 @@ function addEventListeners()
 	
 	//Keyboard Event Listener
 	window.document.addEventListener("keydown", onDocumentKeyDown, false);
+	window.document.addEventListener("keyup", onDocumentKeyUp, false);
 
 	//Scrambler
 	//document.getElementById("scramble").addEventListener("click", ScrambleCube);
@@ -28,11 +29,56 @@ function onWindowResize(event)
 	tick();
 }
 
-var rotations = [];
+var keyMappings = 
+{
+	'32' : 'space',
+	'38' : 'up',
+	'87' : 'W',
+	'37' : 'left',
+	'65' : 'A',
+	'40' : 'down',
+	'83' : 's',
+	'39' : 'right',
+	'68' : 'D',
+/*
+	'66' : 'B',
+	'68' : 'D',
+	'70' : 'F',
+	'76' : 'L',
+	'82' : 'R',
+	'85' : 'U',
+	'88' : 'X',
+	'89' : 'Y',
+	'90' : 'Z'
+*/
+};
 
 function onDocumentKeyDown(event)
 {
-	console.log("Keydown Listener");
+	switch ( event.keyCode ) {
+		case 87: // w
+			moveForward = true; break;
+		case 38: // up
+			panUp = true; break;
+		case 65: // a
+			moveLeft = true; break;
+		case 37: // left
+			panLeft = true; break;
+		case 83: // s
+			moveBackward = true; break;
+		case 40: // down
+			panDown = true; break;
+		case 68: // d
+			moveRight = true; break;
+		case 39: // right
+			panRight = true; break; 
+		case 32: // space
+			if ( canJump === true ) velocity.y += 350;
+			canJump = false;
+			break;
+	}
+
+/*
 	var kc = event.keyCode.toString();
 	if (keyMappings.hasOwnProperty(kc)) 
 	{
@@ -42,75 +88,27 @@ function onDocumentKeyDown(event)
 		rotations.push(rot);
 	}
 	//toRot(event.keyCode, event.shiftKey);
+*/
 }
 
-function ScrambleCube()
+function onDocumentKeyUp(event)
 {
-	var nRot = document.getElementById("ScrambleNumber");
-	var rotKeys = Object.keys(keyMappings);
-	var rKC = rotKeys[Math.floor(Math.random()*rotKeys.length)];
-	for (var i = 0, len = nRot.value; i < len; ++i) 
-	{
-		console.log( "Loop #" + i );
-		rKC = parseInt(rotKeys[Math.floor(Math.random()*rotKeys.length)]);
-		console.log( "Current rKC:" + rKC );
-		// TODO: Random directions
-		// toRot(rKC, direction);
-		direction = (Math.random() < 0.5) ? 1 : -1;
-		var rot = new Object();
-		rot = { "kc" : rKC, "dir" : direction, "current" : false };
-		rotations.push(rot);
+	switch ( event.keyCode ) {
+		case 87: // w
+			moveForward = false; break;
+		case 38: // up
+			panUp = false; break;
+		case 65: // a
+			moveLeft = false; break;
+		case 37: // left
+			panLeft = false; break;
+		case 83: // s
+			moveBackward = false; break;
+		case 40: // down
+			panDown = false; break;
+		case 68: // d
+			moveRight = false; break;
+		case 39: // right
+			panRight = false; break; 
 	}
-}
-
-var cubesPos = {
-	'position' : [],
-	'rotation' : []
-};
-
-function saveCubes() 
-{
-	cubesPos = {
-	'position' : [],
-	'rotation' : []
-	};
-	
-	for(var i = 0; i < 27; ++i)
-	{
-		cubesPos.position.push(JSON.parse(JSON.stringify(cubes[i].position)));
-		cubesPos.rotation.push(JSON.parse(JSON.stringify(cubes[i].rotation)));
-	}
-	var cPosJSON = JSON.stringify(cubesPos);
-	
-	try {
-    var isFileSaverSupported = !!new Blob;
-	} catch (e) {
-		alert("Unsupported! Save text (Copy & paste):" + cPosJSON);
-	}
-	try {
-	var blob = new Blob( [cPosJSON], {type: "text/plain;charset=utf-8"});
-	var fileName = document.getElementById("file");
-	saveAs(blob, fileName.value);
-	} catch (e) {
-		alert("Save Failed");
-	}
-}
-
-function loadCubes() 
-{
-	if (rotations.length == 0)
-	{
-		try {
-		var saveJSON = document.getElementById("SaveJSON");
-		var saveData = JSON.parse(saveJSON.value);
-		for(var i = 0; i < 27; ++i)
-		{
-			cubes[i].position.set(saveData.position[i].x,  saveData.position[i].y,  saveData.position[i].z);
-			cubes[i].rotation.set(saveData.rotation[i]._x, saveData.rotation[i]._y, saveData.rotation[i]._z);
-		}
-		} catch (e) {
-			alert("Load Failed");
-		}
-	}
-	reportSolved();
 }

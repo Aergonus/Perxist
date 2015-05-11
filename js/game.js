@@ -7,7 +7,7 @@ var stats;
 var clock = new THREE.Clock(), delta = clock.getDelta();
 var objects = [];
 var raycaster;
-var controls, fpsControls, plControls
+var controls, fpsControls, plControls,
 	controlsEnabled 	= false, 
 	fpsControlsEnabled 	= false, 
 	plControlsEnabled 	= false;
@@ -38,12 +38,16 @@ var blocker = document.getElementById( 'blocker' );
 var instructions = document.getElementById( 'instructions' );
 var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
 
-/* Allow movement?
-var moveForward = false;
-var moveBackward = false;
-var moveLeft = false;
-var moveRight = false;
-*/
+var moveForward 	= false, 
+	moveBackward 	= false,
+	moveLeft 		= false,
+	moveRight 		= false,
+	panUp 			= false,
+	panDown			= false,
+	panLeft			= false,
+	panRight 		= false,
+	canJump 		= false;
+
 var prevTime = performance.now();
 var velocity = new THREE.Vector3();
 
@@ -57,7 +61,7 @@ window.onload = function setup()
 	// Set up all 3D Objects in scene
 	createScene();
 	// PointerLock
-	pointerLock();
+	//pointerLock();
 	// Render/Drawing/Animate function
 	tick();
 }
@@ -80,7 +84,7 @@ function init()
 	camera.position.set(20, 20, 20); // Initial position gives a orthographic perspective
 										// Not setting inital camera position screws up shadow rendering
 	//CameraControls:
-	cameraControls = new THREE.OrbitControls(camera, renderer.domElement);//THREE.FlyControls(camera, renderer.domElement);
+	cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
 	
 	addEventListeners();
 }
@@ -109,7 +113,11 @@ function tick()
 	delta = clock.getDelta()
 	cameraControls.update(delta);
 	stats.update();
-	//lights.position.copy(camera.position);
+	updateWorld(delta);
+	//plControls.getObject().position.copy(cubie.position);
+	//plControls.getObject().position.y += 10;
+	lights.position.copy(camera.position); //plControls.getObject().position
+	
 	endAnimation = false;
 	// Draw THREE.JS scene
 	renderer.render(scene, camera);
@@ -145,6 +153,9 @@ function createScene()
 	geometry = new THREE.PlaneGeometry( 2000, 2000, 100, 100 );
 	geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) ); // Makes plane "horizontal" instead of "vertical"
 	var texture = THREE.ImageUtils.loadTexture('media/ground.png');
+	texture.wrapS = THREE.RepeatWrapping;
+	texture.wrapT = THREE.RepeatWrapping;
+	texture.repeat.set( 4, 4 );
 	for ( var i = 0, l = geometry.vertices.length; i < l; i ++ ) {
 
 		var vertex = geometry.vertices[ i ];
@@ -163,10 +174,11 @@ function createScene()
 
 	}
 	
-	material = new THREE.MeshBasicMaterial({map: texture, transparent: true});
-	//material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
+	//material = new THREE.MeshBasicMaterial({map: texture, transparent: true});
+	material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
 
 	plane = new THREE.Mesh( geometry, material );
+	objects.push(plane);
 	scene.add( plane );
 
 }
@@ -174,11 +186,10 @@ function createScene()
 function createPlayer() {
 	cubiegeometry = new THREE.BoxGeometry( 3, 3, 3 );
 	cubiematerial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: false, wireframeLinewidth: 20 } );
-
 	cubie = new THREE.Mesh( cubiegeometry, cubiematerial );
+	cubie.position.set(0,3,0);
 	scene.add( cubie );
 }
-
 
 var lights;
 function createLights()
@@ -214,6 +225,48 @@ function createLights()
 
 }
 
+function updateWorld(delta)
+{
+		if ( controlsEnabled ) {
+		raycaster.ray.origin.copy( cubie.position );
+
+		var intersections = raycaster.intersectObjects( objects );
+
+		var isOnObject = intersections.length > 0;
+
+		velocity.x -= velocity.x * 10.0 * delta;
+		velocity.z -= velocity.z * 10.0 * delta;
+
+		velocity.y -= 9.8 * 10.0 * delta; // 100.0 = mass
+
+		if ( moveForward ) velocity.z -= 400.0 * delta;
+		if ( moveBackward ) velocity.z += 400.0 * delta;
+
+		if ( moveLeft ) velocity.x -= 400.0 * delta;
+		if ( moveRight ) velocity.x += 400.0 * delta;
+
+		if ( isOnObject === true ) {
+			velocity.y = Math.max( 0, velocity.y );
+
+			canJump = true;
+		}
+
+		cubie.translateX( velocity.x * delta );
+		cubie.translateY( velocity.y * delta );
+		cubie.translateZ( velocity.z * delta );
+
+		if ( cubie.position.y < 0 ) {
+
+			velocity.y = 0;
+			cubie.position.y = 0;
+
+			canJump = true;
+
+		}
+	}
+
+}
+
 function errorMessage()
 {
 	alert("Oh no! It seems WebGL is either not supported or your GPU is blacklisted! Switching to Canvas Renderer... Will get slow!");
@@ -223,7 +276,7 @@ function errorMessage()
 function pointerLock() 
 {
 	if ( havePointerLock ) {
-
+		
 		var element = document.body;
 
 		var pointerlockchange = function ( event ) {
