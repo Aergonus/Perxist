@@ -191,21 +191,6 @@ function createPlayer() {
     ];
 	
 	this.caster = new THREE.Raycaster();
-	
-	collision: function () {
-		'use strict';
-		var collisions, i,
-		  // Maximum distance from the origin before we consider collision
-		  distance = 1.5,
-
-		for (i = 0; i < this.rays.length; i += 1) {
-		  this.caster.set(this.mesh.position, this.rays[i]);
-		  collisions = this.caster.intersectObjects(objects);
-		  if (collisions.length > 0 && collisions[0].distance <= distance) {
-			lose();
-		  }
-		}
-	}
 }
 
 var lights;
@@ -248,16 +233,35 @@ function createLights()
 
 }
 
-var raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 1.501, 1.8 );
+var checkDownRay = new THREE.Vector3( 0, - 1, 0 );
+var raycaster = new THREE.Raycaster( new THREE.Vector3(), checkDownRay, 1.501, 1.8 );
+
+var rays = [
+      new THREE.Vector3(0, 0, 1).normalize,
+      new THREE.Vector3(1, 0, 1).normalize,
+      new THREE.Vector3(1, 0, 0).normalize,
+      new THREE.Vector3(1, 0, -1).normalize,
+      new THREE.Vector3(0, 0, -1).normalize,
+      new THREE.Vector3(-1, 0, -1).normalize,
+      new THREE.Vector3(-1, 0, 0).normalize,
+      new THREE.Vector3(-1, 0, 1).normalize
+    ];
 var maxY = 0;
 var updateZ = false, updateX = false;
 function updateWorld(delta)
 {
-	raycaster.ray.origin.copy( cubie.position );
-	
+	raycaster.ray.set( cubie.position , checkDownRay );
 	var intersections = raycaster.intersectObjects( objects );
 	var isOnObject = intersections.length > 0;
-
+	
+	for (i = 0; i < rays.length; i ++) {
+		raycaster.ray.direction = rays[i];
+		var collisions = raycaster.intersectObjects( objects );
+		if (collisions.length > 0) {
+			console.log("Lost");
+			lose();
+		}
+	}
 	velocity.x -= velocity.x * 10.0 * delta;
 	velocity.z -= velocity.z * 10.0 * delta + 9.8;
 
