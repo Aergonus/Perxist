@@ -267,8 +267,8 @@ function updateWorld(delta)
 		cubie.position.z = 150 + cubie.position.z;
 		for ( var i = 0, l = scene.children.length; i < l; ++i ) {
 			if (scene.children[i].name == "Obstacle") {
-				scene.children[i].position.z = - 150 + scene.children[i].position.z;
-				if (scene.children[i].position.z > 50)
+				scene.children[i].position.z = 50 + scene.children[i].position.z;
+				if (scene.children[i].position.z > cubie.position.z)
 					scene.remove(scene.children[i]);
 			}
 		}
