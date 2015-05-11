@@ -262,12 +262,12 @@ function updateWorld(delta)
 		velocity.x *= -0.8;
 		cubie.position.x = (cubie.position.x > 0) ? (10-1.5) : -(10-1.5);
 	}
-	if ((ground.position.z - cubie.position.z) > 150 && !updateZ) {
+	if ((ground.position.z - cubie.position.z) > 350 && !updateZ) {
 		updateZ = true;
-		cubie.position.z = 150 + cubie.position.z;
+		cubie.position.z = 350 + cubie.position.z;
 		for ( var i = 0, l = scene.children.length; i < l; ++i ) {
 			if (scene.children[i].name !== undefined && scene.children[i].name == "Obstacle") {
-				scene.children[i].position.z = 50 + scene.children[i].position.z;
+				scene.children[i].position.z = 350 + scene.children[i].position.z;
 				if (scene.children[i].position.z > cubie.position.z)
 					scene.remove(scene.children[i]);
 			}
