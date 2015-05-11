@@ -187,12 +187,17 @@ function createLights()
 	//scene.add(hslight);
 	
 	lights = new THREE.Object3D();
-	var pointlight = new THREE.PointLight(0xFFFFFF, 0.99225);
-	pointlight.position.set(10,10,10);
+	var pointlightL = new THREE.PointLight(0xFFFFFF, 0.99225);
+	pointlightL.position.set(10,10,10);
 	//spotlight.angle = 60 * Math.PI / 180;
-	pointlight.exponent = 10;
+	pointlightL.exponent = 10;
 	//spotlight.target.position.set(0,0,0);
 
+	var pointlightR = new THREE.PointLight(0xFFFFFF, 0.99225);
+	pointlightR.position.set(-10,10,-10);
+	//spotlight.angle = 60 * Math.PI / 180;
+	pointlightR.exponent = 10;
+	
 	var spotlight = new THREE.SpotLight(0xFFFFFF, 0.99225);
 	spotlight.position.set(-10,10,-10);
 	spotlight.angle = 60 * Math.PI / 180;
