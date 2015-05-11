@@ -256,11 +256,11 @@ function updateWorld(delta)
 		canJump = true;
 	}
 	
-	if ( Math.abs(cubie.position.x) < (10-1.5) ) {
+	if ( Math.abs(cubie.position.x) > (10-1.5) ) {
 		velocity.x = 0;
 		cubie.position.x = (cubie.position.x > 0) ? (10-1.5) : -(10-1.5);
 	}
-	if ((plane.position.z - cubie.position.z) > 600 && !updateZ) {
+	if ((ground.position.z - cubie.position.z) > 600 && !updateZ) {
 		updateZ = true;
 		cubie.position.z = 1300 + cubie.position.z;
 		updateZ = false;
@@ -268,6 +268,7 @@ function updateWorld(delta)
 	if ((cubie.position.x) > 600 && !updateX) {
 		updateX = true;
 		cubie.position.x = cubie.position.x - 600;
+		planes.
 		updateX = false;
 	}
 	if ((- cubie.position.x) > 600 && !updateX) {
