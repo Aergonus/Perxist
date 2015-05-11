@@ -322,6 +322,11 @@ function updateWorld(delta)
 
 }
 
+function lose() 
+{
+	alert("You didn't avoid drama!");
+}
+
 function errorMessage()
 {
 	alert("Oh no! It seems WebGL is either not supported or your GPU is blacklisted! Switching to Canvas Renderer... Will get slow!");
