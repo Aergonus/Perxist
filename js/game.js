@@ -1,10 +1,16 @@
 // Global Object Variables
-var renderer, scene, camera,
+var camera, scene, renderer,
+	geometry, material, mesh,
 	pointLight, spotLight, highLight;
 
 var stats;
 var clock = new THREE.Clock(), delta = clock.getDelta();
 var objects = [];
+var raycaster;
+var controls, fpsControls, plControls
+	controlsEnabled 	= false, 
+	fpsControlsEnabled 	= false, 
+	plControlsEnabled 	= false;
 
 // Field variables to set Scene Dimensions
 var canvasWidth = window.innerWidth;
@@ -24,17 +30,34 @@ var PI_2 = Math.PI / 2,
     rad180 = Math.PI,
     rad360 = Math.PI * 2,
     deg2rad = Math.PI / 180,
-    rad2deg = 180 / Math.PI,
+    rad2deg = 180 / Math.PI;
 var ANIMATE_INCREMENT = 0.01;
+
+// Get Attributes
+var blocker = document.getElementById( 'blocker' );
+var instructions = document.getElementById( 'instructions' );
+var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
+
+/* Allow movement?
+var moveForward = false;
+var moveBackward = false;
+var moveLeft = false;
+var moveRight = false;
+*/
+var prevTime = performance.now();
+var velocity = new THREE.Vector3();
+
 
 window.onload = function setup()
 {
-	//Scene initialisation code:
+	// Scene initialisation code:
 	init();
 	// Add elements to DOM
 	addToDOM();
 	// Set up all 3D Objects in scene
 	createScene();
+	// PointerLock
+	pointerLock();
 	// Render/Drawing/Animate function
 	tick();
 }
@@ -48,15 +71,16 @@ function init()
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
 	renderer.setClearColor(0xFFFFFF); // Set clear to White
+	//renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize(canvasWidth, canvasHeight);
 	
 	//Camera:
 	camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT_RATIO, NEAR, FAR);
 	// Args(FOV, Aspect Ratio, Near clipping plane, Far clipping plane)
-	camera.position.set(100, 100, 100); // Initial position gives a orthographic perspective
+	camera.position.set(20, 20, 20); // Initial position gives a orthographic perspective
 										// Not setting inital camera position screws up shadow rendering
 	//CameraControls:
-	cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
+	cameraControls = new THREE.OrbitControls(camera, renderer.domElement);//THREE.FlyControls(camera, renderer.domElement);
 	
 	addEventListeners();
 }
@@ -75,22 +99,7 @@ function addToDOM()
 	container.appendChild(stats.domElement);
 }
 
-function detachAndReset()
-{
-	for (var i = 0, len = active.length; i < len; ++i)
-		THREE.SceneUtils.detach(active[i], pivot, scene);
-	active.length = 0;
-	activeCount -= 1;
-
-	for(var i in actions)
-		actions[i] = false;
-		
-	pivot.rotation.x = 0;
-	pivot.rotation.y = 0;
-	pivot.rotation.z = 0;
-}
-
-	var ticks = 0;
+var ticks = 0;
 function tick()
 {	ticks++;
 	if (ticks < 10)
@@ -100,10 +109,8 @@ function tick()
 	delta = clock.getDelta()
 	cameraControls.update(delta);
 	stats.update();
-	lights.position.copy(camera.position);
+	//lights.position.copy(camera.position);
 	endAnimation = false;
-	prepRot();
-	rotate();
 	// Draw THREE.JS scene
 	renderer.render(scene, camera);
 	// Loop draw function call
@@ -118,29 +125,69 @@ function createScene()
 	// Add Lights to scene
 	createLights();
 	// Add Fog
-	scene.fog = new THREE.FogExp2( 0x3B4924, 0.0025 );
+	scene.fog = new THREE.Fog( 0x000000, 0, 250 );
+	//scene.fog = new THREE.FogExp2( 0x006633, 0.9025 );
 	// Add Camera to scene
 	scene.add(camera);
 	
 	// Create Objects
-	//player = new createPlayer():
+	player = new createPlayer();
 
 	// Start the renderer
 	renderer.setSize(canvasWidth, canvasHeight);
 
 	// Create Camera Pivot 
-	pivot = new THREE.Object3D();
-	scene.add(pivot); // Default adds to Origin
+	//pivot = new THREE.Object3D();
+	//scene.add(pivot); // Default adds to Origin
 	// Add Objects to scene 
 	//scene.add(cubes[i]);
+	
+	geometry = new THREE.PlaneGeometry( 2000, 2000, 100, 100 );
+	geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) ); // Makes plane "horizontal" instead of "vertical"
+	var texture = THREE.ImageUtils.loadTexture('media/ground.png');
+	for ( var i = 0, l = geometry.vertices.length; i < l; i ++ ) {
+
+		var vertex = geometry.vertices[ i ];
+		vertex.x += 0;
+		vertex.y += 0;
+		vertex.z += 0;
+
+	}
+
+	for ( var i = 0, l = geometry.faces.length; i < l; i ++ ) {
+
+		var face = geometry.faces[ i ];
+		face.vertexColors[ 0 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
+		face.vertexColors[ 1 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
+		face.vertexColors[ 2 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
+
+	}
+	
+	material = new THREE.MeshBasicMaterial({map: texture, transparent: true});
+	//material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors, transparent: true});
+
+	plane = new THREE.Mesh( geometry, material );
+	scene.add( plane );
 
 }
+
+function createPlayer() {
+	cubiegeometry = new THREE.BoxGeometry( 3, 3, 3 );
+	cubiematerial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: false, wireframeLinewidth: 20 } );
+
+	cubie = new THREE.Mesh( cubiegeometry, cubiematerial );
+	scene.add( cubie );
+}
+
 
 var lights;
 function createLights()
 {
 	var ambientLight = new THREE.AmbientLight(0x404040);
-	scene.add(ambientLight);
+	//scene.add(ambientLight);
+	var hslight = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
+	hslight.position.set( 0.5, 1, 0.75 );
+	//scene.add(hslight);
 	
 	lights = new THREE.Object3D();
 	var pointlight = new THREE.PointLight(0xFFFFFF, 0.99225);
@@ -163,11 +210,102 @@ function createLights()
 	lights.add(pointlight);
 	lights.add(spotlight);
 	lights.add(highlight);
-	scene.add(lights);
+	//scene.add(lights);
+
 }
 
 function errorMessage()
 {
 	alert("Oh no! It seems WebGL is either not supported or your GPU is blacklisted! Switching to Canvas Renderer... Will get slow!");
 	return new THREE.CanvasRenderer();
+}
+
+function pointerLock() 
+{
+	if ( havePointerLock ) {
+
+		var element = document.body;
+
+		var pointerlockchange = function ( event ) {
+
+			if ( document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element ) {
+
+				plControlsEnabled = true;
+				plControls.enabled = true;
+
+				blocker.style.display = 'none';
+
+			} else {
+
+				plControls.enabled = false;
+
+				blocker.style.display = '-webkit-box';
+				blocker.style.display = '-moz-box';
+				blocker.style.display = 'box';
+
+				instructions.style.display = '';
+
+			}
+
+		}
+
+		var pointerlockerror = function ( event ) {
+
+			instructions.style.display = '';
+
+		}
+
+		// Hook pointer lock state change events
+		document.addEventListener( 'pointerlockchange', pointerlockchange, false );
+		document.addEventListener( 'mozpointerlockchange', pointerlockchange, false );
+		document.addEventListener( 'webkitpointerlockchange', pointerlockchange, false );
+
+		document.addEventListener( 'pointerlockerror', pointerlockerror, false );
+		document.addEventListener( 'mozpointerlockerror', pointerlockerror, false );
+		document.addEventListener( 'webkitpointerlockerror', pointerlockerror, false );
+
+		instructions.addEventListener( 'click', function ( event ) {
+
+			instructions.style.display = 'none';
+
+			// Ask the browser to lock the pointer
+			element.requestPointerLock = element.requestPointerLock || element.mozRequestPointerLock || element.webkitRequestPointerLock;
+
+			if ( /Firefox/i.test( navigator.userAgent ) ) {
+
+				var fullscreenchange = function ( event ) {
+
+					if ( document.fullscreenElement === element || document.mozFullscreenElement === element || document.mozFullScreenElement === element ) {
+
+						document.removeEventListener( 'fullscreenchange', fullscreenchange );
+						document.removeEventListener( 'mozfullscreenchange', fullscreenchange );
+
+						element.requestPointerLock();
+					}
+
+				}
+
+				document.addEventListener( 'fullscreenchange', fullscreenchange, false );
+				document.addEventListener( 'mozfullscreenchange', fullscreenchange, false );
+
+				element.requestFullscreen = element.requestFullscreen || element.mozRequestFullscreen || element.mozRequestFullScreen || element.webkitRequestFullscreen;
+
+				element.requestFullscreen();
+
+			} else {
+
+				element.requestPointerLock();
+
+			}
+
+		}, false );
+
+	} else {
+
+		instructions.innerHTML = 'Your browser doesn\'t seem to support Pointer Lock API';
+
+	}
+	
+	plControls = new THREE.PointerLockControls( camera );
+	scene.add( plControls.getObject() );
 }
