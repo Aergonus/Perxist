@@ -161,7 +161,7 @@ function createScene()
 	var texture = THREE.ImageUtils.loadTexture('media/ground.png');
 	texture.wrapS = THREE.RepeatWrapping;
 	texture.wrapT = THREE.RepeatWrapping;
-	texture.repeat.set( 1, 1 );
+	texture.repeat.set( 2, 2 );
 	for ( var i = 0, l = geometry.vertices.length; i < l; i ++ ) {
 
 		var vertex = geometry.vertices[ i ];
