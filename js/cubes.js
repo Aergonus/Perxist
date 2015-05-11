@@ -49,10 +49,10 @@ function setCubeMaterial()
 {
 	var cubeMaterial = [];
 	var curTexture;
-	var randText = Math.floor(9 * Math.random());
+	var randText = Math.floor(7 * Math.random());
 	switch(randText) {
 		case 0:
-			curTexture = texture1; break;
+		//	curTexture = texture1; break;
 		case 1:
 			curTexture = texture2; break;
 		case 2:
@@ -66,9 +66,9 @@ function setCubeMaterial()
 		case 6:
 			curTexture = texture7; break;
 		case 7:
-			curTexture = texture8; break;
+		//	curTexture = texture8; break;
 		case 8:
-			curTexture = texture9; break;
+		//	curTexture = texture9; break;
 	}
 	
 	for (var i = 0; i < 6; ++i)
