@@ -131,7 +131,7 @@ function tick()
 
 function createScene()
 {
-	var numObs = 1;
+	var numObs = 500;
 	// Create the scene
 	scene = new THREE.Scene();
 	// Add Lights to scene

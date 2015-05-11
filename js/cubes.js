@@ -12,7 +12,7 @@ function createCubes(numCubes)
 		var cubeGeometry = new THREE.BoxGeometry(cDim * Math.random(), cDim * Math.random());
 		var cubeMaterial = setCubeMaterial();
 		var cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial[i]);
-		cubeMesh.position.set(worldEdge * Math.random(), cDim * 2 * Math.random(), worldEdge * Math.random());
+		cubeMesh.position.set(worldEdge * Math.random(), cDim * 2 * Math.random(), - worldEdge * Math.random() + 100);
 		cubes.push(cubeMesh);
 	}
 	return cubes;
