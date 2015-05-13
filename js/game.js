@@ -265,16 +265,17 @@ function updateWorld(delta)
 	
 	if ( moveLeft ) velocity.x -= 400.0 * delta;
 	if ( moveRight ) velocity.x += 400.0 * delta;
-
-	if ( (allIntersect[0].distance < 1.5 + velocity.y * delta) && !updateY) {
-		updateY = true;
-		goombajumps++;
-		cubie.translateY( - allIntersect[0].distance - 1.5);
-		velocity.y = Math.max( 0, velocity.y );
-		canJump = true;
-		updateY = false;
+	if (allIntersect.length > 0) {
+		if ( (allIntersect[0].distance < 1.5 + velocity.y * delta) && !updateY) {
+			updateY = true;
+			goombajumps++;
+			cubie.translateY( - allIntersect[0].distance - 1.5);
+			velocity.y = Math.max( 0, velocity.y );
+			canJump = true;
+			updateY = false;
+		}
 	}
-
+	
 	cubie.translateX( velocity.x * delta );
 	cubie.translateY( velocity.y * delta );
 	cubie.translateZ( velocity.z * delta );
