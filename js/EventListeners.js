@@ -53,7 +53,7 @@ var keyMappings =
 	'90' : 'Z'
 */
 };
-var pause = true;
+var pause = true, jumped = false;
 function onDocumentKeyDown(event)
 {
 	switch ( event.keyCode ) {
@@ -79,6 +79,7 @@ function onDocumentKeyDown(event)
 		case 32: // space
 			if ( canJump === true ) {
 				velocity.y += 45;
+				jumped = true;
 				console.log("Added velocity");
 			}
 			canJump = false;
