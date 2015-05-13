@@ -275,7 +275,7 @@ function updateWorld(delta)
 			//cubie.translateY( - intersections[0].distance + 1.5);
 			console.log(velocity.y, (- velocity.y * delta), intersections[0].distance, ((- velocity.y * delta) - (intersections[0].distance - 1.5)));
 		if (velocity.y < 0 && (- velocity.y * delta) - (intersections[0].distance - 1.5) > 0 )	{
-			cubie.position.y = intersections[0].object.position.y + 1.55;
+			cubie.position.setY = intersections[0].object.position.y + intersections[0].object.geometry.parameters.height;
 			console.log("Moved to ", cubie.position.y);
 			velocity.y = Math.max( 0, velocity.y );
 		}
