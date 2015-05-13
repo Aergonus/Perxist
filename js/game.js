@@ -241,10 +241,8 @@ var zmove = 9.8, pcontrol = 1;
 function updateWorld(delta)
 {
 	raycaster.ray.origin.copy( cubie.position );
-	raycasterDown.ray.origin.copy( cubie.position );
 	raycaster.ray.direction = checkDownRay;
 	var intersections = raycaster.intersectObjects( objects );
-	var allIntersect = raycasterDown.intersectObjects( objects );
 	var isOnObject = intersections.length > 0;
 	/*
 	for (i = 0; i < rays.length; i ++) {
@@ -274,17 +272,19 @@ function updateWorld(delta)
 	if ( isOnObject === true && !updateY) {
 	console.log(intersections);
 		updateY = true;
-			goombajumps++;
 			//cubie.translateY( - intersections[0].distance + 1.5);
-			console.log(velocity.y, (- velocity.y * delta), intersections[0].distance);
-		if (velocity.y < 0 && (- velocity.y * delta) > (intersections[0].distance - 1.5) )	{
+			console.log(velocity.y, (- velocity.y * delta), intersections[0].distance), (- velocity.y * delta) - (intersections[0].distance - 1.5);
+		if (velocity.y < 0 && (- velocity.y * delta) - (intersections[0].distance - 1.5) > 0 )	{
 			cubie.position.y = intersections[0].object.position.y + 1.55;
 			velocity.y = Math.max( 0, velocity.y );
 		}
+		raycasterDown.ray.origin.copy( cubie.position );
+		var allIntersect = raycasterDown.intersectObjects( objects );
 		if (allIntersect.length > 0) {
 			velocity.y = Math.max( 0, velocity.y );
-		}
+			goombajumps++;
 			canJump = true;
+		}
 			updateY = false;
 	}
 	
