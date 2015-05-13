@@ -37,9 +37,10 @@ var keyMappings =
 	'37' : 'left',
 	'65' : 'A',
 	'40' : 'down',
-	'83' : 's',
+	'83' : 'S',
 	'39' : 'right',
 	'68' : 'D',
+	'80' : 'P',
 /*
 	'66' : 'B',
 	'68' : 'D',
@@ -57,7 +58,8 @@ function onDocumentKeyDown(event)
 {
 	switch ( event.keyCode ) {
 		case 9 : // tab
-			pause = !pause;//changeControl(); break;
+		case 80:
+			pause = !pause; break;//changeControl(); break;
 		case 87: // w
 			moveForward = true; break;
 		case 38: // up
