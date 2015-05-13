@@ -52,12 +52,12 @@ var keyMappings =
 	'90' : 'Z'
 */
 };
-
+var pause = false;
 function onDocumentKeyDown(event)
 {
 	switch ( event.keyCode ) {
 		case 9 : // tab
-			//changeControl(); break;
+			pause = !pause;//changeControl(); break;
 		case 87: // w
 			moveForward = true; break;
 		case 38: // up
