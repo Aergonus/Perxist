@@ -273,7 +273,7 @@ function updateWorld(delta)
 	console.log(intersections);
 		updateY = true;
 			//cubie.translateY( - intersections[0].distance + 1.5);
-			console.log(velocity.y, (- velocity.y * delta), intersections[0].distance), (- velocity.y * delta) - (intersections[0].distance - 1.5);
+			console.log(velocity.y, (- velocity.y * delta), intersections[0].distance, ((- velocity.y * delta) - (intersections[0].distance - 1.5)));
 		if (velocity.y < 0 && (- velocity.y * delta) - (intersections[0].distance - 1.5) > 0 )	{
 			cubie.position.y = intersections[0].object.position.y + 1.55;
 			console.log("Moved to ", cubie.position.y);
@@ -281,6 +281,7 @@ function updateWorld(delta)
 		}
 		raycasterDown.ray.origin.copy( cubie.position );
 		var allIntersect = raycasterDown.intersectObjects( objects );
+		console.log(cubie.position, raycasterDown.ray.origin.y, allIntersect);
 		if (allIntersect.length > 0) {
 			console.log("Hit! ", allIntersect);
 			velocity.y = Math.max( 0, velocity.y );
