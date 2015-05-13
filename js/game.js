@@ -281,18 +281,18 @@ function updateWorld(delta)
 		if ( (allIntersect[0].distance < 1.5 + velocity.y * delta) && !updateY) {
 	*/
 	if ( isOnObject === true && !updateY) {
-	console.log(intersections);
+	//console.log(intersections);
 		updateY = true;
 			//cubie.translateY( - intersections[0].distance + 1.5);
-			console.log(velocity.y, (- velocity.y * delta), intersections[0].distance, ((- velocity.y * delta) - (intersections[0].distance - 1.5)));
+			//console.log(velocity.y, (- velocity.y * delta), intersections[0].distance, ((- velocity.y * delta) - (intersections[0].distance - 1.5)));
 		if (velocity.y < 0 && (- velocity.y * delta) - (intersections[0].distance - 1.5) > 0 )	{
 			cubie.position.setY = intersections[0].object.position.y + intersections[0].object.geometry.parameters.height;
-			console.log("Moved to ", cubie.position.y);
+			//console.log("Moved to ", cubie.position.y);
 			velocity.y = Math.max( 0, velocity.y );
 		}
 		raycasterDown.ray.origin.copy( cubie.position );
 		var allIntersect = raycasterDown.intersectObjects( objects );
-		console.log(cubie.position, raycasterDown.ray.origin.y, allIntersect);
+		//console.log(cubie.position, raycasterDown.ray.origin.y, allIntersect);
 		if (allIntersect.length > 0) {
 			/*if (allIntersect[0].object.material.map != null) {
 				var texcheck = allIntersect[0].object.material.map.sourceFile;
@@ -327,8 +327,8 @@ function updateWorld(delta)
 		updateZ = true;
 		cubie.position.z = 350 + cubie.position.z;
 		for ( var i = 0; scene.children[i] !== undefined; ++i ) {
-			console.log(scene.children);
-			console.log(scene.children[i]);
+			//console.log(scene.children);
+			//console.log(scene.children[i]);
 			if (scene.children[i].name !== undefined && scene.children[i].name == "Obstacle") {
 				scene.children[i].position.z = 350 + scene.children[i].position.z;
 				if (scene.children[i].position.z > cubie.position.z) {
