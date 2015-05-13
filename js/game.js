@@ -294,6 +294,10 @@ function updateWorld(delta)
 		var allIntersect = raycasterDown.intersectObjects( objects );
 		console.log(cubie.position, raycasterDown.ray.origin.y, allIntersect);
 		if (allIntersect.length > 0) {
+			if (allIntersect[0].object.material.map != null) {
+				var texcheck = allIntersect[0].object.material.map.sourceFile;
+				alert("Texture!");
+			}
 			console.log("Hit! ", allIntersect);
 			velocity.y = Math.max( 0, velocity.y );
 			if (jumped) {
