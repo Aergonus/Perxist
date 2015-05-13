@@ -222,7 +222,7 @@ function createLights()
 
 var checkDownRay = new THREE.Vector3( 0, - 1, 0 );
 var raycaster = new THREE.Raycaster( new THREE.Vector3(), checkDownRay.clone(), 1.501, 200 );
-var raycasterDown = new THREE.Raycaster( new THREE.Vector3(), checkDownRay.clone(), 1.5);
+var raycasterDown = new THREE.Raycaster( new THREE.Vector3(), checkDownRay.clone(), 1.5, 1.8);
 
 var rays = [
       new THREE.Vector3(0, 0, 1).normalize,
@@ -277,8 +277,11 @@ function updateWorld(delta)
 			goombajumps++;
 			//cubie.translateY( - intersections[0].distance + 1.5);
 			console.log(velocity.y, (- velocity.y * delta), intersections[0].distance);
-		if (velocity.y < 0 && (- velocity.y * delta) > (intersections[0].distance + 1.5) )	{
+		if (velocity.y < 0 && (- velocity.y * delta) > (intersections[0].distance - 1.5) )	{
 			cubie.position.y = intersections[0].object.position.y + 1.55;
+			velocity.y = Math.max( 0, velocity.y );
+		}
+		if (allIntersect.length > 0) {
 			velocity.y = Math.max( 0, velocity.y );
 		}
 			canJump = true;
