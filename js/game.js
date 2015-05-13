@@ -245,9 +245,10 @@ var tex1 = false,
 	tex3 = false,
 	tex4 = false,
 	tex5 = false,
-	tex = false,
-	tex = false,
-	tex = false,
+	tex6 = false,
+	tex7 = false,
+	tex8 = false,
+	tex9 = false;
 function updateWorld(delta)
 {
 	raycaster.ray.origin.copy( cubie.position );
