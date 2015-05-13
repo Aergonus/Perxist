@@ -276,7 +276,10 @@ function updateWorld(delta)
 		updateY = true;
 			goombajumps++;
 			//cubie.translateY( - intersections[0].distance + 1.5);
+			console.log(velocity.y, (- velocity.y * delta), intersections[0].distance);
+		if (velocity.y < 0 && (- velocity.y * delta) > (intersections[0].distance + 1.5) )	{
 			cubie.position.y = intersections[0].object.position.y + 1.55;
+		}
 			velocity.y = Math.max( 0, velocity.y );
 			canJump = true;
 			updateY = false;
