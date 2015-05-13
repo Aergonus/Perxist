@@ -287,7 +287,10 @@ function updateWorld(delta)
 		if (allIntersect.length > 0) {
 			console.log("Hit! ", allIntersect);
 			velocity.y = Math.max( 0, velocity.y );
-			goombajumps++;
+			if (jumped) {
+				goombajumps++;
+				jumped = false;
+			}
 			canJump = true;
 		}
 			updateY = false;
@@ -349,6 +352,11 @@ function updateWorld(delta)
 function lose() 
 {
 	alert("You didn't avoid drama!");
+}
+
+function win() 
+{
+	alert("You have crushed Cooper drama!");
 }
 
 function errorMessage()
