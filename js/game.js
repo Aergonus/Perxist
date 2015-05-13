@@ -276,11 +276,13 @@ function updateWorld(delta)
 			console.log(velocity.y, (- velocity.y * delta), intersections[0].distance), (- velocity.y * delta) - (intersections[0].distance - 1.5);
 		if (velocity.y < 0 && (- velocity.y * delta) - (intersections[0].distance - 1.5) > 0 )	{
 			cubie.position.y = intersections[0].object.position.y + 1.55;
+			console.log("Moved to ", cubie.position.y);
 			velocity.y = Math.max( 0, velocity.y );
 		}
 		raycasterDown.ray.origin.copy( cubie.position );
 		var allIntersect = raycasterDown.intersectObjects( objects );
 		if (allIntersect.length > 0) {
+			console.log("Hit! ", allIntersect);
 			velocity.y = Math.max( 0, velocity.y );
 			goombajumps++;
 			canJump = true;
