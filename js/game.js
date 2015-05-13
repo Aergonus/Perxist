@@ -246,7 +246,7 @@ function updateWorld(delta)
 	var intersections = raycaster.intersectObjects( objects );
 	var allIntersect = raycasterDown.intersectObjects( objects );
 	var isOnObject = intersections.length > 0;
-	
+	/*
 	for (i = 0; i < rays.length; i ++) {
 		var raycheck = new THREE.Raycaster( cubie.position, rays[i], 1.501, 2 );
 		var collisions = raycheck.intersectObjects( objects );
@@ -255,6 +255,7 @@ function updateWorld(delta)
 			lose();
 		}
 	}
+	*/
 	velocity.x -= velocity.x * 10.0 * delta;
 	velocity.z -= velocity.z * 10.0 * delta + zmove;
 	velocity.y -= 7.8 * 10.0 * delta; // 100.0 = mass
@@ -271,6 +272,7 @@ function updateWorld(delta)
 		if ( (allIntersect[0].distance < 1.5 + velocity.y * delta) && !updateY) {
 	*/
 	if ( isOnObject === true && !updateY) {
+	console.log(intersections);
 		updateY = true;
 			goombajumps++;
 			cubie.translateY( - intersections[0].distance + 1.5);
