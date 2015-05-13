@@ -222,6 +222,7 @@ function createLights()
 
 var checkDownRay = new THREE.Vector3( 0, - 1, 0 );
 var raycaster = new THREE.Raycaster( new THREE.Vector3(), checkDownRay.clone(), 1.501, 1.8 );
+var raycasterDown = new THREE.Raycaster( new THREE.Vector3(), checkDownRay.clone(), 1.5);
 
 var rays = [
       new THREE.Vector3(0, 0, 1).normalize,
@@ -239,8 +240,10 @@ var goombajumps = 0;
 function updateWorld(delta)
 {
 	raycaster.ray.origin.copy( cubie.position );
+	raycasterDown.ray.origin.copy( cubie.position );
 	raycaster.ray.direction = checkDownRay;
 	var intersections = raycaster.intersectObjects( objects );
+	var allIntersect = raycasterDown.intersectObjects( objects );
 	var isOnObject = intersections.length > 0;
 	
 	for (i = 0; i < rays.length; i ++) {
@@ -252,21 +255,21 @@ function updateWorld(delta)
 		}
 	}
 	velocity.x -= velocity.x * 10.0 * delta;
-	velocity.z -= velocity.z * 10.0 * delta;// + 9.8;
-	console.log(maxY);
+	velocity.z -= velocity.z * 10.0 * delta + 9.8;
 	velocity.y -= 7.8 * 10.0 * delta; // 100.0 = mass
 	maxVY = (maxVY > velocity.y) ? maxVY : velocity.y;
 	
 	velocity.y = (velocity.y > 90) ? 90 : velocity.y;
-	if ( moveForward ) velocity.z -= 100.0 * delta;
-	if ( moveBackward ) velocity.z += 100.0 * delta;
+	if ( moveForward ) velocity.z -= 10.0 * delta;
+	if ( moveBackward ) velocity.z += 10.0 * delta;
 	
 	if ( moveLeft ) velocity.x -= 400.0 * delta;
 	if ( moveRight ) velocity.x += 400.0 * delta;
 
-	if ( isOnObject === true && !updateY) {
+	if ( (allIntersect[0].distance < 1.5 + velocity.y * delta) && !updateY) {
 		updateY = true;
 		goombajumps++;
+		cubie.translateY( - allIntersect[0].distance - 1.5);
 		velocity.y = Math.max( 0, velocity.y );
 		canJump = true;
 		updateY = false;
