@@ -240,6 +240,14 @@ var maxVY = 0, maxY = 0;
 var updateZ = false, updateX = false, updateY = false;
 var goombajumps = 0;
 var zmove = 9.8, pcontrol = 1;
+var tex1 = false,
+	tex2 = false,
+	tex3 = false,
+	tex4 = false,
+	tex5 = false,
+	tex = false,
+	tex = false,
+	tex = false,
 function updateWorld(delta)
 {
 	raycaster.ray.origin.copy( cubie.position );
