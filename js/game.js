@@ -237,6 +237,7 @@ var rays = [
 var maxVY = 0, maxY = 0;
 var updateZ = false, updateX = false, updateY = false;
 var goombajumps = 0;
+var zmove = 9.8, pcontrol = 1;
 function updateWorld(delta)
 {
 	raycaster.ray.origin.copy( cubie.position );
@@ -255,13 +256,13 @@ function updateWorld(delta)
 		}
 	}
 	velocity.x -= velocity.x * 10.0 * delta;
-	velocity.z -= velocity.z * 10.0 * delta + 9.8;
+	velocity.z -= velocity.z * 10.0 * delta + zmove;
 	velocity.y -= 7.8 * 10.0 * delta; // 100.0 = mass
 	maxVY = (maxVY > velocity.y) ? maxVY : velocity.y;
 	
 	velocity.y = (velocity.y > 90) ? 90 : velocity.y;
-	if ( moveForward ) velocity.z -= 10.0 * delta;
-	if ( moveBackward ) velocity.z += 10.0 * delta;
+	if ( moveForward ) velocity.z -= 10.0 * delta * pcontrol;
+	if ( moveBackward ) velocity.z += 10.0 * delta * pcontrol;
 	
 	if ( moveLeft ) velocity.x -= 400.0 * delta;
 	if ( moveRight ) velocity.x += 400.0 * delta;
