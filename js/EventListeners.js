@@ -53,7 +53,7 @@ var keyMappings =
 	'90' : 'Z'
 */
 };
-var pause = false;
+var pause = true;
 function onDocumentKeyDown(event)
 {
 	switch ( event.keyCode ) {
