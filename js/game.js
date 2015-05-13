@@ -321,8 +321,10 @@ function updateWorld(delta)
 					}
 			}
 		}
-		while (objects[0].name != "Obstacle" || objects[0].position.z > cubie.position.z) {
-			objects.shift();
+		if (objects.length > 0) {
+			while (objects[0].name != "Obstacle" || objects[0].position.z > cubie.position.z) {
+				objects.shift();
+			}
 		}
 		cubes = new createCubes(15);
 		for ( var i = 0, l = cubes.length; i < l; ++i ) {
