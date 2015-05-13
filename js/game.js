@@ -115,7 +115,9 @@ function tick()
 	//cameraControls.update(delta);
 	stats.update();
 	if (haveFocus) {
+		if (pause) {
 		updateWorld(delta);
+		}
 		camera.position.set(cubie.position.x, cubie.position.y + 10, cubie.position.z + 50);
 		camera.lookAt(cubie.position);
 		//plControls.getObject().position.copy(cubie.position);
